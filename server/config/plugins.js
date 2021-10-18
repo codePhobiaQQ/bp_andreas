@@ -8,7 +8,7 @@ module.exports = ({ env }) => ({
     settings: {
       defaultFrom: 'juliasedefdjian@strapi.io',
       defaultReplyTo: 'juliasedefdjian@strapi.io',
-      testAddress: 'vital.pereg@mail.ru45f5',
+      testAddress: 'vital.pereg@mail.ru',
     },
   },
   // ...
