@@ -1,0 +1,131 @@
+// Static Variables
+
+$admin-header-height: 70px;
+//$admin-footer-height: 70px;
+$admin-nav-width: 300px;
+$admin-nav-padding-l: 46px;
+$admin-padding-bottom: 40px;
+
+// Main Layout Grid
+
+.admin {
+  --spacing: 1rem;
+
+  // Flexbox Fallback
+  display: flex;
+  flex-wrap: wrap;
+
+  // Grid
+  display: grid;
+  height: 100vh;
+
+  grid-template-rows:     $admin-header-height 1fr;
+  grid-template-columns:  $admin-nav-width 1fr;
+  grid-template-areas:    "header header"
+  "nav    main";
+
+  &__header {
+    display: flex;
+    flex-basis: 100%;
+    grid-area: header;
+    height: $admin-header-height;
+    //box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    position: relative;
+  }
+
+  &__nav {
+    flex: 0 0 $admin-nav-width;
+    grid-area: nav;
+    align-items: center;
+    flex-direction: column;
+    display: flex;
+    padding-bottom: $admin-padding-bottom;
+  }
+
+  &__main {
+    flex: 1;
+    grid-area: main;
+    padding: var(--spacing);
+    padding-bottom: $admin-padding-bottom;
+    overflow-y: auto;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  @media screen and (min-width: 48rem) {
+    --spacing: 2rem;
+  }
+}
+
+// Dashboard Overview Grid
+
+.dashboard {
+  --column-count: 2;
+
+  // Flexbox Fallback
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 calc(var(--spacing) * -0.5);
+
+  // Grid
+  display: grid;
+  grid-template-columns: repeat(var(--column-count), 1fr);
+  grid-gap: var(--spacing);
+
+  &__item {
+    // By default, items span 2 columns
+    flex: 1 1 50%;
+    grid-column-end: span 2;
+    padding: calc(var(--spacing) / 2);
+
+    // these span the full width
+    &--full {
+      flex-basis: 100%;
+      grid-column: 1 / -1;
+    }
+
+    // these span only one column
+    &--col {
+      flex-basis: calc(100% / var(--column-count));
+      grid-column-end: span 1;
+    }
+  }
+
+  // Switch to 4-col grid on larger screens
+  @media screen and (min-width: 48rem) {
+    --column-count: 4;
+  }
+
+  // If we have grid support, reset the margins and paddings;
+  // grid-gap handles the spacing for us.
+  @supports (display: grid) {
+    margin: 0;
+
+    &__item {
+      padding: 0;
+    }
+  }
+}
+
+// ===============================
+// Demo stuff to make it look nice
+// ===============================
+
+.logo {
+  display: flex;
+  flex: 0 0 $admin-nav-width;
+  height: $admin-header-height;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0;
+}
+
+.toolbar {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  align-items: center;
+  padding: 0 var(--spacing);
+}

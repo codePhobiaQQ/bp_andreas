@@ -1,0 +1,878 @@
+@import "./mixins/_mixins.sass"
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap')
+
+body
+  background-color: #FBFBFD
+  position: relative
+  min-height: 100vh
+  line-height: 1.6em
+  font-size: 16px
+  font-family: 'Poppins', sans-serif
+
+.section
+  width: 100%
+
+ul, li
+  margin: 0
+  padding: 0
+
+*
+  margin: 0
+  padding: 0
+  box-sizing: border-box
+  outline: none
+  text-decoration: none
+  list-style: none
+  letter-spacing: 0.01em
+
+a
+  text-decoration: none
+  outline: none
+  color: inherit
+  &:hover
+    color: inherit
+
+button
+  cursor: pointer
+  border: none
+
+span
+  display: block
+
+.fadeIn-enter
+  opacity: 0
+  pointer-events: none
+  transform: scale(.9)
+
+.fadeIn-enter-active
+  opacity: 1
+  transition: all 300ms
+  pointer-events: inherit
+  transform: scale(1)
+
+.fadeIn-exit
+  opacity: 1
+  pointer-events: none
+
+.fadeIn-exit-active
+  transform: scale(.9)
+  opacity: 0
+  transition: all 300ms
+
+//------
+
+.fadeInNoTrans-enter
+  opacity: 0
+  pointer-events: none
+
+.fadeInNoTrans-enter-active
+  opacity: 1
+  transition: all 300ms
+  pointer-events: inherit
+
+.fadeInNoTrans-exit
+  opacity: 1
+  pointer-events: none
+
+.fadeInNoTrans-exit-active
+  opacity: 0
+  transition: all 300ms
+
+//----------------
+
+.auth
+  width: 920px
+  height: 650px
+  top: calc(50% - 325px)
+  left: calc(50% - 460px)
+  z-index: 10
+  background-color: #fff
+  position: fixed
+  box-shadow: 0px 10px 40px 2px rgba(3, 41, 177, 0.08), 34.9453px 64.8984px 87.3633px rgba(7, 21, 72, 0.03), 0px 2.49609px 7.48828px rgba(31, 63, 174, 0.06), 0px 0px 1.24805px rgba(31, 63, 174, 0.06)
+  border-radius: 20px
+  padding: 18px 19px
+  display: flex
+  .close
+    position: absolute
+    top: 30px
+    right: 30px
+    width: 30px
+    height: 30px
+    z-index: 10
+    cursor: pointer
+  .auth__img
+    div
+      height: 100%
+  .auth__content
+    width: 50%
+    display: flex
+    flex-direction: column
+    padding-left: 29px
+    margin-top: 25px
+    overflow: auto
+    h3
+      font-weight: 600
+      font-size: 33px
+    p
+      margin: 15px 0 26px
+      font-size: 18px
+      color: #9198B0
+      max-width: 340px
+    .nav-pills .nav-link.active,
+    .nav-pills .nav-link
+      background-color: transparent
+      border-bottom: 1px solid #dee1e8
+      border-radius: 0
+      transition: all .3s ease
+      color: #9198B0
+      font-weight: 600
+      cursor: pointer
+    .nav-pills .nav-link.active
+      border-color: #5779F0
+      color: #5779F0
+      margin-bottom: 27px
+    label
+      display: block
+      font-weight: 500
+      margin-bottom: 3px
+      color: #0D1D52
+      opacity: .45
+      font-size: 14px
+    input
+      background: rgba(186, 197, 234, 0.2)
+      border: 1px solid rgba(0, 0, 0, 0.03)
+      box-sizing: border-box
+      border-radius: 5px
+      height: 44px
+      padding-left: 10px
+      width: 326px
+      margin-bottom: 20px
+    button
+      margin-top: 18px
+      font-weight: 600
+      color: #fff
+      background-color: #5779F0
+      @include centerMix
+      width: 157.29px
+      height: 50px
+      border-radius: 100px
+
+
+.header
+  //display: flex
+  padding: 25px 0
+  .container
+    justify-content: space-between
+    display: flex
+    .header__header-links
+      display: flex
+      width: 250px
+      justify-content: space-between
+      align-items: center
+      li
+        color: #BEC5DF
+        transition: color .3s ease
+        font-weight: bold
+        &:hover
+          color: #5779F0
+
+    .header__buttons
+      display: flex
+      align-items: center
+      .header__log-in
+        color: #5779F0
+        font-weight: bold
+        background-color: transparent
+        font-size: 16px
+        margin-right: 33px
+      .header__try
+        @include dashedButton(133px, 50px)
+
+
+.MainSection
+  margin-top: 70px
+  .container
+    display: flex
+    align-items: center
+    justify-content: space-between
+  .imgWrapper
+    //width: 100%
+    div
+      //max-width: 650px
+      //margin-top: -100px
+      //margin-right: -150px
+      //height: auto
+
+  .contentWrapper
+    width: 450px
+    span
+      @include blueLabel
+      margin-bottom: 26px
+    h1
+      font-size: 44px
+      font-weight: 600
+      line-height: 130%
+      color: #0D1D52
+    .buttonsWrapper
+      display: flex
+      align-items: center
+      .blueButton
+        @include blueBtn(146px, 53px)
+      .videoButtonWrapper
+        display: flex
+        align-items: center
+        button.videoButton
+          width: 53px
+          height: 53px
+          box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+          border-radius: 100px
+          @include centerMix
+          margin-left: 20px
+          border: 1px dashed #5779F0
+          img
+            position: relative
+            right: -3px
+            top: -1px
+        span
+          @include blueLabel
+          font-size: 16px
+          margin-bottom: 0
+          margin-left: 16px
+
+
+.takeTest
+  margin-top: 150px
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+  .imgWrapper
+    img
+      max-width: 730px
+      //margin-top: -100px
+      //margin-right: -150px
+      height: auto
+  .contentWrapper
+    width: 450px
+    span
+      @include blueLabel
+      margin-bottom: 26px
+    h2
+      @include SubMainHeader(28px)
+    p
+      margin-top: 0
+      margin-bottom: 0
+    .buttonsWrapper
+      display: flex
+      align-items: center
+      .blueButton
+        @include dashedButton(150px, 53px)
+        margin-top: 45px
+
+
+.howWork
+  margin-top: 300px
+  .row.bottom
+    margin-top: 120px
+  span
+    @include blueLabel
+    font-size: 14px
+    margin-bottom: 13px
+    text-align: center
+  h2
+    @include SubMainHeader(90px)
+    text-align: center
+  .step
+    .number
+      background: #FFFFFF
+      border: 1px dashed #BAC5EA
+      box-sizing: border-box
+      box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+      border-radius: 100px
+      width: 70px
+      height: 70px
+      @include centerMix
+      font-size: 24px
+      font-weight: 600
+      line-height: 1.7%
+      color: #BAC5EA
+    h3
+      margin: 51px 0 26px 0
+      color: #5779F0
+      font-size: 24px
+      font-weight: bold
+    p
+      color: #6D7694
+      max-width: 280px
+
+
+.aboutSection
+  margin-top: 150px
+  .container
+    display: flex
+    justify-content: space-between
+    align-items: center
+  .imgWrapper
+    img
+      max-width: 345px
+      //margin-top: -100px
+      //margin-right: -150px
+      height: auto
+  .contentWrapper
+    width: 450px
+    span
+      @include blueLabel
+      margin-bottom: 26px
+    h2
+      @include SubMainHeader(26px)
+    p
+      color: #6D7694
+      &:first-child
+        margin-bottom: 21px
+
+
+.subscription
+  span
+    @include blueLabel
+    font-size: 14px
+    margin-bottom: 13px
+    text-align: center
+  h2
+    @include SubMainHeader(78px)
+    text-align: center
+  .cards
+    display: flex
+    justify-content: space-around
+    .card
+      padding: 59px 104px 44px 104px
+      width: 550px
+      box-shadow: 28px 52px 70px rgba(7, 21, 72, 0.03), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+      border-radius: 30px
+      .circle
+        width: 100px
+        height: 100px
+        background-color: #5779F0
+        border-radius: 50%
+        @include centerMix
+        margin: auto
+        margin-bottom: 21px
+      .tarif
+        font-size: 24px
+        color: #000
+        font-weight: 600
+        margin-bottom: 12px
+      .price
+        display: flex
+        align-items: center
+        justify-content: center
+        .dollar
+          font-size: 44px
+          color: #0D1D52
+          font-weight: 600
+        .pere
+          color: #BEC5DF
+          font-size: 25px
+          font-weight: 500
+          margin: 0 9px 0 9px
+          margin-top: -7px
+        .date
+          font-size: 16px
+          color: #BEC5DF
+          font-weight: 600
+          margin: 0
+      .advantage
+        display: flex
+        align-items: center
+        justify-content: space-between
+        width: 100%
+        margin-bottom: 15px
+        span
+          margin-bottom: 0
+      .advantage.non-active
+        color: #BEC5DF
+        font-weight: 500
+      button
+        @include blueBtn(100%, 60px)
+        margin-top: 13px
+        @include centerMix
+        span
+          color: #fff
+          margin-bottom: 0
+          font-size: 16px
+          font-weight: 600
+          margin-left: 13px
+      &.premium
+        border: 1px solid #5779F0
+
+
+.and-numbers
+  margin-top: 101px
+  margin-bottom: 90px
+  .card
+    width: 100%
+    background-color: #5779F0
+    padding: 71px 0 81px 96px
+    background: #5779F0
+    box-shadow: 0px 17.798px 26.6969px rgba(0, 0, 0, 0.06), 0px 2.22474px 6.67423px rgba(0, 0, 0, 0.04), 0px 0px 1.11237px rgba(0, 0, 0, 0.04)
+    border-radius: 40px
+
+    span
+      font-size: 54px
+      font-weight: bold
+      color: #FFFFFF
+      max-width: 600px
+      margin-bottom: 40px
+      line-height: 120%
+    button
+      @include dashedButton(163px, 60px)
+      svg
+        margin-left: 8px
+
+
+footer
+  padding-bottom: 40px
+  .container
+    .top-part
+      margin-bottom: 50px
+      display: flex
+      justify-content: space-between
+      ul
+        display: flex
+        align-items: center
+        width: 396px
+        justify-content: space-between
+        li
+          color: #5779F0
+          font-size: 24px
+          transition: color .3s ease
+          font-weight: bold
+    .bottom-part
+      display: flex
+      justify-content: space-between
+      span
+        color: #BAC5EA
+        font-size: 18px
+        font-weight: normal
+      .contacts
+        display: flex
+        width: 396px
+        justify-content: space-between
+        align-items: center
+        .socLinks
+          margin-left: 135px
+          a
+            &:first-child
+              margin-right: 17px
+
+
+.admin
+  background-color: #F2F3F7
+  .toolbar
+    .findIcon
+      width: 40px
+      height: 40px
+      cursor: pointer
+      background-color: #fff
+      border-radius: 50%
+      padding: 10px
+    .personalData
+      display: flex
+      align-items: center
+      width: 100%
+      .filters
+        display: flex
+        justify-content: space-between
+        width: 100%
+        margin-right: 30px
+        li
+          font-weight: bold
+          color: #BEC5DF
+          padding: 8px 12px
+          cursor: pointer
+          transition: all .2s ease
+          &.active
+            background: #5779F0
+            box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+            border-radius: 50px
+            color: #fff
+      .endData
+        display: flex
+        margin-left: auto
+        .premium
+          @include centerMix
+          width: 175px
+          height: 50px
+          background: linear-gradient(96.06deg, #5779F0 -30%, #A939EE 100%)
+          box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+          border-radius: 100px
+          color: #fff
+          font-weight: bold
+          span
+            margin-left: 13px
+        .level
+          background: #FFFFFF
+          box-shadow: 27.0763px 50.2845px 67.6907px rgba(7, 21, 72, 0.03), 0px 1.93402px 5.80206px rgba(31, 63, 174, 0.06), 0px 0px 0.96701px rgba(31, 63, 174, 0.06)
+          border-radius: 15px
+          width: 144.87px
+          height: 50px
+          margin: 0 20px
+        .avatar
+          width: 50px
+          height: 50px
+          img
+            width: 50px
+            height: 50px
+  .admin__nav, .logo
+    border-right: 2px dashed #BAC5EA
+  .admin__nav
+    .menu
+      margin-top: 50px
+      background-color: #fff
+      border-radius: 12px
+      padding: 46px 0
+      width: 214px
+      height: 200px
+      display: flex
+      flex-direction: column
+      justify-content: center
+      .menu__item
+        transition: all .3s ease
+        position: relative
+        transition: all .3s ease
+        &:hover
+          transform: scale(1.02)
+          box-shadow: 6px 6px 14px 0px rgba(50, 50, 50, 0.05)
+        svg
+          fill: #BEC5DF
+        &:nth-child(2)
+          margin: 5px 0
+        .active
+          span
+            color:  #5779F0
+          svg
+            fill: #5779F0
+          &:before
+            content: ''
+            position: absolute
+            display: block
+            left: 0
+            height: 100%
+            width: 3px
+            background-color: #5779F0
+        a
+          display: flex
+          align-items: center
+          height: 40px
+          padding-left: 25px
+          padding-right: 25px
+          span
+            font-weight: 600
+            color: #BEC5DF
+          svg
+            margin-right: 25px
+    .bottomEls
+      margin-top: auto
+      .settings
+        padding: 14px 16px
+        width: 214px
+        height: 72px
+        background-color: #fff
+        border-radius: 12px
+        display: flex
+        align-items: center
+        &:last-child
+          margin-top: 10px
+        .icon
+          width: 40px
+          height: 40px
+          background: #FFFFFF
+          @include centerMix
+          border: 1px dashed #BEC5DF
+          box-sizing: border-box
+          box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+          border-radius: 10px
+        span
+          color: #BEC5DF
+          font-weight: 600
+          margin-left: 18px
+          max-width: 120px
+  .admin__main
+    .blogWrapper
+      display: flex
+      align-items: center
+      padding: 40px
+      border-radius: 30px
+      transition: all .5s ease
+      cursor: pointer
+      &:hover
+        background-color: #fff
+        transform: scale(1.01)
+        -webkit-box-shadow: 5px 5px 16px 0px rgba(50, 50, 50, 0.26)
+        -moz-box-shadow: 5px 5px 16px 0px rgba(50, 50, 50, 0.26)
+        box-shadow: 5px 5px 16px 0px rgba(50, 50, 50, 0.26)
+      &:last-child
+        margin-bottom: 0
+      img
+        width: 23%
+        margin-right: 27px
+    &.video__main
+      display: grid
+      grid-template-columns: repeat(4, 1fr)
+      grid-auto-rows: auto
+      grid-gap: calc(1.5%)
+    a.cardLink
+      width: 100%
+      padding-top: 155%
+      height: auto
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(180deg, rgba(0, 0, 0, 0.33) 0%, rgba(255, 255, 255, 0) 24.69%)
+      box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+      border-radius: 20px
+      overflow: hidden
+      position: relative
+      overflow: hidden
+      .card
+        position: absolute
+        top: 0
+        height: 100%
+        width: 100%
+        overflow: hidden
+        transition: all .3s ease
+        &:after
+          content: ""
+          display: block
+          position: absolute
+          top: 0
+          left: 0
+          height: 100%
+          width: 100%
+          background-color: #000
+          opacity: 0
+          transition: transform .6s ease
+        &:hover
+          transform: scale(1.02)
+          & .videoInfo
+            opacity: 1
+          &:after
+            opacity: .3
+        img.preview
+          object-fit: cover
+          height: 100%
+          width: 100%
+          position: relative
+        .videoInfo
+          position: absolute
+          z-index: 2
+          width: 100%
+          height: 100%
+          opacity: 0
+          display: flex
+          flex-direction: column
+          transition: opacity .4s ease
+          padding: 20px 17px
+          &__Top
+            display: flex
+            align-items: center
+            img.authorAvatar
+              width: 45px
+              height: 45px
+              border-radius: 5px
+              left: 17px
+              object-fit: cover
+            h4
+              color: #fff
+              font-family: 'Poppins'
+              font-weight: 600
+              font-size: 15px
+              margin-left: 14px
+              text-align: left
+          .price
+            width: 45px
+            height: 45px
+            background-color: #fff
+            @include centerMix
+            color: #000
+            font-size: 18px
+            //margin-left: auto
+            margin-top: 20px
+            border-radius: 50%
+            font-weight: 600
+          .moreButton
+            box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+            border-radius: 100px
+            width: 100%
+            height: 49px
+            border: 1px solid #FFFFFF
+            @include centerMix
+            color: #fff
+            margin-top: auto
+            font-weight: 600
+            &:hover
+              transition: all .3s ease
+              background-color: #fff
+              color: #000
+
+
+.admin__main.videoWrapper
+  width: 100%
+  display: block
+  .videoWindowWrapper
+    margin: auto
+    max-width: 1200px
+    border-radius: 20px
+    overflow: hidden
+    background-color: #fff
+    video
+      width: 100%
+    .videoInfo
+      padding: 50px 35px
+      .videoInfoHelp
+        display: flex
+        align-items: center
+        margin-bottom: 20px
+        span
+          background-color: #BEC5DF
+          border-radius: 20px
+          padding: 5px 10px
+          color: white
+          &.level
+            margin-right: 25px
+      h3
+        font-weight: 600
+        margin-bottom: 13px
+      p
+        max-width: 80%
+      .price
+        color: #BEC5DF
+        display: flex
+        margin: 23px 0
+        align-items: baseline
+        .numbs
+          color: #0D1D52
+          font-size: 44px
+          font-weight: 600
+        .separator
+          font-size: 25px
+        .letters
+          font-size: 16px
+          font-weight: 600
+      .buyButton
+        background: #5779F0
+        box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+        border-radius: 100px
+        width: 135px
+        height: 49px
+        @include centerMix
+        color: #fff
+        font-weight: 600
+        cursor: pointer
+
+.findWindow
+  position: fixed
+  top: 0
+  left: 0
+  height: 100%
+  width: 100%
+  background-color: rgba(0, 0, 0, .7)
+  z-index: 10
+  .close
+    width: 35px
+    height: 35px
+    fill: #fff
+    stroke: #fff
+    position: absolute
+    cursor: pointer
+    top: 30px
+    transition: transform .3s ease
+    right: 30px
+    &:hover
+      transform: scale(1.3)
+  .findLine
+    display: flex
+    width: 75%
+    max-width: 650px
+    margin: auto
+    border-bottom: 2px solid rgba(255, 255, 255, .7)
+    margin-top: 3%
+    input
+      width: 100%
+      background-color: transparent
+      border: none
+      box-shadow: none
+      outline: none
+      color: rgba(255, 255, 255, 1)
+      font-size: 25px
+      padding: 0 15px
+    svg
+      stroke: rgba(255, 255, 255, .7)
+      width: 45px
+      height: 45px
+      margin: 10px
+  .ResultField
+    width: 75%
+    max-width: 650px
+    margin: auto
+    max-height: 70%
+    overflow: auto
+    margin-top: 20px
+    .findVideoWrapper
+      a
+        margin: 20px 0
+        display: flex
+        align-items: center
+        color: #fff
+        transition: transform .5s ease
+        margin-left: 10px
+        &:hover
+          transform: scale(1.03)
+        img
+          object-fit: cover
+        span
+          margin-left: 20px
+          font-size: 18px
+
+.admin__main.blogPage
+  .descriptionWrapper
+    display: flex
+    align-items: center
+    img
+      width: 45px
+      height: 45px
+      object-fit: cover
+      border-radius: 10px
+    .info
+      font-weight: 600
+      margin-left: 14px
+      .title
+        font-size: 15px
+      .author
+        font-size: 13px
+
+.resetWrapper
+  label
+    display: block
+    font-weight: 500
+    margin-bottom: 3px
+    color: #0D1D52
+    opacity: .45
+    font-size: 14px
+  input
+    background: rgba(186, 197, 234, 0.2)
+    border: 1px solid rgba(0, 0, 0, 0.03)
+    box-sizing: border-box
+    border-radius: 5px
+    height: 44px
+    padding-left: 10px
+    width: 326px
+    margin-bottom: 20px
+  button
+    margin-top: 18px
+    font-weight: 600
+    color: #fff
+    background-color: #5779F0
+    @include centerMix
+    width: 157.29px
+    height: 50px
+    border-radius: 100px
+
+
+
