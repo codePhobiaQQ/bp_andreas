@@ -1,13 +1,21 @@
 import MainHeader from "../hoc/MainHeader";
 import CSSTransition from "react-transition-group/CSSTransition";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Auth from "../components/auth";
 import Image from "next/image";
 import { Container, Row, Col } from "reactstrap";
 import Tick from "../components/UI/tick";
+import FeaturedTeachers from "../components/FeaturedTeachers";
 
 export default function Home() {
-  const [authVisible, setAuthVisible] = useState(false);
+  const [authVisible, setAuthVisible] = useState<boolean>(false);
+  const [offsetY, setOffsetY] = useState<number>(0);
+
+  const scrollHandler = () => setOffsetY(window.pageYOffset)
+  useEffect(() => {
+    window.addEventListener('scroll', scrollHandler);
+    return () => window.removeEventListener('scroll', scrollHandler);
+  }, [])
 
   return (
     <MainHeader setAuthVisible={setAuthVisible}>
@@ -21,7 +29,7 @@ export default function Home() {
       </CSSTransition>
 
       <section className="MainSection">
-        <Container>
+        <Container style={{position: "relative"}}>
           <div className="contentWrapper">
             <span>For Balboa lovers by Balboa lovers</span>
             <h1>Learn balboa online {process.env.PORT}</h1>
@@ -52,6 +60,12 @@ export default function Home() {
               alt="planet"
               width={750}
               height={750}
+              // style={{
+              //   position: "absolute",
+              //   top: `${offsetY * 0.5}px`,
+              //   right: 0,
+              //   zIndex: 10,
+              // }}
             />
           </div>
         </Container>
@@ -178,6 +192,8 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
+      <FeaturedTeachers />
 
       <section className="subscription">
         <Container>

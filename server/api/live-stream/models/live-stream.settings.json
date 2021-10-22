@@ -1,0 +1,54 @@
+{
+  "kind": "collectionType",
+  "collectionName": "live_streams",
+  "info": {
+    "name": "LiveStream",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "image": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "bigImg": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "duration": {
+      "type": "integer"
+    },
+    "levele": {
+      "model": "leveles"
+    }
+  }
+}

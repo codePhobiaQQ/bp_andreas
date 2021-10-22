@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { IVideo } from "../models/IVideo";
 import { NextPage } from "next";
+import {ILivestream} from "../models/ILivestream";
 
 interface CardProps {
-  card: IVideo;
+  card: IVideo | ILivestream;
 }
 
 const Card: NextPage<CardProps> = ({ card }) => {

@@ -7,6 +7,22 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "PUT",
+      "path": "/user/change",
+      "handler": "users.change",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/user",
+      "handler": "users.find",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

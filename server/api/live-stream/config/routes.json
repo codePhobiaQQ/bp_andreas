@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/live-streams",
+      "handler": "live-stream.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/live-streams/count",
+      "handler": "live-stream.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/live-streams/:id",
+      "handler": "live-stream.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/live-streams",
+      "handler": "live-stream.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/live-streams/:id",
+      "handler": "live-stream.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/live-streams/:id",
+      "handler": "live-stream.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -6,4 +6,8 @@ module.exports = {
     const entity = await strapi.services.category.findOne({ slug });
     return sanitizeEntity(entity, { model: strapi.models.category });
   },
+  async find(ctx) {
+    const entity = await strapi.services.category.find();
+    return sanitizeEntity(entity, { model: strapi.models.category });
+  },
 };

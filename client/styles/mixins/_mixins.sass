@@ -36,3 +36,43 @@ $ppd: 34px
   line-height: 130%
   color: #0D1D52
   margin-bottom: $mb
+
+@mixin inputMixins
+  label
+    display: block
+    font-weight: 500
+    margin-bottom: 3px
+    color: #0D1D52
+    opacity: .45
+    font-size: 14px
+  input
+    background: rgba(186, 197, 234, 0.2)
+    border: 1px solid rgba(0, 0, 0, 0.03)
+    box-sizing: border-box
+    border-radius: 5px
+    height: 44px
+    padding-left: 10px
+    width: 326px
+    margin-bottom: 20px
+  button
+    margin-top: 18px
+    font-weight: 600
+    color: #fff
+    background-color: #5779F0
+    @include centerMix
+    width: 157.29px
+    height: 50px
+    border-radius: 100px
+
+@mixin buttonBlueMixin
+  margin-top: 18px
+  font-weight: 600
+  color: #fff
+  background-color: #5779F0
+  @include centerMix
+  width: 157.29px
+  height: 50px
+  border-radius: 100px
+
+
+

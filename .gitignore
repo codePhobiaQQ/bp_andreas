@@ -1,3 +1,5 @@
 /client/node_modules
+/client/.next
 /server/node_modules
 .idea
+client/.next/static/webpack/webpack.78aaac23884ef995828c.hot-update.js

@@ -1,5 +1,7 @@
 @import "./mixins/_mixins.sass"
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap')
+//@import "slick-carousel/slick/slick.css";
+//@import "slick-carousel/slick/slick-theme.css";
 
 body
   background-color: #FBFBFD
@@ -159,7 +161,6 @@ span
 
 
 .header
-  //display: flex
   padding: 25px 0
   .container
     justify-content: space-between
@@ -175,7 +176,6 @@ span
         font-weight: bold
         &:hover
           color: #5779F0
-
     .header__buttons
       display: flex
       align-items: center
@@ -195,14 +195,6 @@ span
     display: flex
     align-items: center
     justify-content: space-between
-  .imgWrapper
-    //width: 100%
-    div
-      //max-width: 650px
-      //margin-top: -100px
-      //margin-right: -150px
-      //height: auto
-
   .contentWrapper
     width: 450px
     span
@@ -249,8 +241,6 @@ span
   .imgWrapper
     img
       max-width: 730px
-      //margin-top: -100px
-      //margin-right: -150px
       height: auto
   .contentWrapper
     width: 450px
@@ -404,6 +394,19 @@ span
       &.premium
         border: 1px solid #5779F0
 
+.FeaturedTeachers
+  margin-top: 130px
+  margin-bottom: 57px
+  span
+    @include blueLabel
+    font-size: 14px
+    margin-bottom: 13px
+    text-align: center
+  h2
+    @include SubMainHeader(78px)
+    text-align: center
+  .contentWrapper
+    display: flex
 
 .and-numbers
   margin-top: 101px
@@ -415,7 +418,6 @@ span
     background: #5779F0
     box-shadow: 0px 17.798px 26.6969px rgba(0, 0, 0, 0.06), 0px 2.22474px 6.67423px rgba(0, 0, 0, 0.04), 0px 0px 1.11237px rgba(0, 0, 0, 0.04)
     border-radius: 40px
-
     span
       font-size: 54px
       font-weight: bold
@@ -580,6 +582,13 @@ footer
         border-radius: 12px
         display: flex
         align-items: center
+        svg
+          fill: #BEC5DF
+        &.active
+          svg
+            fill: #5779F0
+          span
+            color: #5779F0
         &:last-child
           margin-top: 10px
         .icon
@@ -620,10 +629,13 @@ footer
       grid-template-columns: repeat(4, 1fr)
       grid-auto-rows: auto
       grid-gap: calc(1.5%)
+      @media screen and (max-width: 1200px)
+        grid-template-columns: repeat(3, 1fr)
     a.cardLink
       width: 100%
       padding-top: 155%
       height: auto
+      max-height: 400px
       background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(180deg, rgba(0, 0, 0, 0.33) 0%, rgba(255, 255, 255, 0) 24.69%)
       box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
       border-radius: 20px
@@ -634,6 +646,7 @@ footer
         position: absolute
         top: 0
         height: 100%
+        max-height: 400px
         width: 100%
         overflow: hidden
         transition: all .3s ease
@@ -848,31 +861,52 @@ footer
         font-size: 13px
 
 .resetWrapper
-  label
-    display: block
-    font-weight: 500
-    margin-bottom: 3px
+  @include inputMixins
+
+.admin__main.account__main
+  .settingsWrapper
     color: #0D1D52
-    opacity: .45
-    font-size: 14px
-  input
-    background: rgba(186, 197, 234, 0.2)
-    border: 1px solid rgba(0, 0, 0, 0.03)
-    box-sizing: border-box
-    border-radius: 5px
-    height: 44px
-    padding-left: 10px
-    width: 326px
-    margin-bottom: 20px
-  button
-    margin-top: 18px
-    font-weight: 600
-    color: #fff
-    background-color: #5779F0
-    @include centerMix
-    width: 157.29px
-    height: 50px
-    border-radius: 100px
+    background-color: #fff
+    padding: 52px 40px
+    box-shadow: 28px 52px 70px rgba(7, 21, 72, 0.03), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+    border-radius: 20px
+    h2
+      font-weight: 600
+      font-size: 33px
+      &:after
+        content: ''
+        position: relative
+        width: 100%
+        display: block
+        border: 2px dashed #BAC5EA
+        opacity: 0.5
+        margin: 40px 0
+    h3
+      font-weight: 600
+      font-size: 20px
+      margin-bottom: 36px
+    .changingFields
+      display: grid
+      grid-template-columns: repeat(2, 1fr)
+      grid-template-rows: repeat(2, 1fr)
+      grid-column-gap: 20px
+      grid-row-gap: 35px
+      @include inputMixins
+      .changingField
+        input
+          margin-bottom: 0
+          width: 100%
+    .separator
+      width: 100%
+      display: block
+      border: 2px dashed #BAC5EA
+      opacity: 0.5
+      margin: 46px 0 24px
+    button
+      @include buttonBlueMixin
+      margin-left: auto
+
+
 
 
 

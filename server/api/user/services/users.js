@@ -7,8 +7,9 @@ module.exports = {
   async logged(ctx) {
     try {
       const user = ctx.state.user;
+      console.log(user);
       if (!user) {
-        throw new Error('Unuthtarized error');
+        return ctx.request(null, [{message: "Authorised error"}]);
       }
       return new UserToClientDto(user);
     } catch (e) {
