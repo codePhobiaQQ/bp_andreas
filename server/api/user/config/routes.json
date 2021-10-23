@@ -7,6 +7,14 @@
       "config": {
         "policies": []
       }
+    },
+    {
+      "method": "POST",
+      "path": "/user/change",
+      "handler": "users.change",
+      "config": {
+        "policies": []
+      }
     }
   ]
 }

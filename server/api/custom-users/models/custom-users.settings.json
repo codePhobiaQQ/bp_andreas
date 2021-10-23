@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "CustomUsers",
+  "info": {
+    "name": "CustomUsers",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "secondName": {
+      "type": "string"
+    },
+    "blocked": {
+      "type": "boolean",
+      "default": false
+    },
+    "confirmed": {
+      "type": "boolean",
+      "default": false
+    },
+    "users_permissions_role": {
+      "plugin": "users-permissions",
+      "model": "role"
+    },
+    "avatar": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "password": {
+      "type": "password"
+    }
+  }
+}
