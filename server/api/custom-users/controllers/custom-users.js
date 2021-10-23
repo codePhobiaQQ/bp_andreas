@@ -1,8 +1,7 @@
-'use strict';
+const { create } = require('./../services/custom-users');
 
-/**
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
-
-module.exports = {};
+module.exports = {
+  async create(ctx) {
+    return create(ctx);
+  },
+};
