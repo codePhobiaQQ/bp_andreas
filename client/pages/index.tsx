@@ -1,13 +1,49 @@
 import MainHeader from "../hoc/MainHeader";
 import CSSTransition from "react-transition-group/CSSTransition";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import Auth from "../components/auth";
 import Image from "next/image";
 import { Container, Row, Col } from "reactstrap";
 import Tick from "../components/UI/tick";
+import {AnimationControls, motion, useAnimation} from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   const [authVisible, setAuthVisible] = useState(false);
+  const { ref, inView } = useInView({
+    threshold: 0.35
+  });
+  const animation: AnimationControls = useAnimation();
+
+  const enterAnimation = {
+    
+  }
+
+  useEffect(() => {
+    console.log(inView);
+    if (inView) {
+      console.log('here');
+      animation.start({
+        x: '0',
+        transition: {
+          type: 'string',
+          duration: 1,
+          bounce: 0.3
+        }
+      })
+    }
+    // if (!inView) {
+    //   console.log('not here')
+    //   animation.start({
+    //     x: '100vw',
+    //     transition: {
+    //       type: 'string',
+    //       duration: 1
+    //     }
+    //   })
+    // }
+  }, [inView])
+
 
   return (
     <MainHeader setAuthVisible={setAuthVisible}>
@@ -23,7 +59,22 @@ export default function Home() {
       <section className="MainSection">
         <Container>
           <div className="contentWrapper">
-            <span>For Balboa lovers by Balboa lovers</span>
+            <motion.span
+              animate={{
+                y: 0,
+                opacity: 1,
+                transition: {
+                  type: 'string',
+                  duration: 1
+                }
+              }}
+              initial={{
+                y: '-50px',
+                opacity: 0
+              }}
+            >
+              For Balboa lovers by Balboa lovers
+            </motion.span>
             <h1>Learn balboa online {process.env.PORT}</h1>
             <p>
               A Balboa haven filled with moves and footwork, practice videos and
@@ -70,12 +121,16 @@ export default function Home() {
               <button className="blueButton">Try for free</button>
             </div>
           </div>
-          <div className="imgWrapper">
-            <Image
+          <div ref={ref} className="imgWrapper">
+            <motion.img
               src="/assets/img/quizePhoto.png"
               width={730}
               height={495}
               alt="planet"
+              animate={animation}
+              initial={{
+                x: '100vw'
+              }}
             />
           </div>
         </Container>
