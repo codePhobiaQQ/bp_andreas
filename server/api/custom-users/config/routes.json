@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/custom-users/login",
+      "handler": "custom-users.login",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/custom-users/:id",
       "handler": "custom-users.update",

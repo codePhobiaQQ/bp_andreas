@@ -25,11 +25,13 @@
     },
     "blocked": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "required": true
     },
     "confirmed": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "required": true
     },
     "users_permissions_role": {
       "plugin": "users-permissions",
@@ -47,6 +49,9 @@
     },
     "password": {
       "type": "password"
+    },
+    "level": {
+      "model": "leveles"
     }
   }
 }
