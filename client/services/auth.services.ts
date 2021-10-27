@@ -9,8 +9,8 @@ export default class AuthServices {
     password: string
   ): Promise<AxiosResponse<AuthResponse>> {
     const user = await axios.post<AuthResponse>(
-      `${back_url}/auth/local`,
-      { "identifier": email, password }
+      `${back_url}/custom-users/login`,
+      { email, password }
     );
     console.log(user.data);
     localStorage.setItem("token", user.data.jwt);

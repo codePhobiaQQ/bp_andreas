@@ -15,34 +15,55 @@ export default function Home() {
   });
   const animation: AnimationControls = useAnimation();
 
-  const enterAnimation = {
-
+  const wrapperVariant = {
+    'hidden': {},
+    'visible': {
+      transition: {
+        staggerChildren: 0.1
+      }
+    },
   }
 
-  useEffect(() => {
-    console.log(inView);
-    if (inView) {
-      console.log('here');
-      animation.start({
-        x: '0',
-        transition: {
-          type: 'string',
-          duration: 1,
-          bounce: 0.3
-        }
-      })
+  const mainSectionVariant = {
+    'hidden': {
+      y: -20,
+      opacity: 0
+    },
+    'visible': {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        duration: 1.5,
+      },
+    },
+  }
+
+  const imgRightVariant = {
+    'hidden': {
+      opacity: 0,
+      x: 100
+    },
+    'visible': {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: 'spring',
+        duration: 1.5,
+        stiffness: 100
+      }
     }
-    // if (!inView) {
-    //   console.log('not here')
-    //   animation.start({
-    //     x: '100vw',
-    //     transition: {
-    //       type: 'string',
-    //       duration: 1
-    //     }
-    //   })
-    // }
-  }, [inView])
+  }
+
+  // useEffect(() => {
+  //   console.log(inView);
+  //   if (inView) {
+  //     console.log('here');
+  //     animation.start({
+  //       x: '0',
+  //     })
+  //   }
+  // }, [inView])
 
 
   return (
@@ -56,32 +77,28 @@ export default function Home() {
         <Auth setAuthVisible={setAuthVisible} />
       </CSSTransition>
 
-      <section className="MainSection">
+      <motion.section
+        variants={wrapperVariant}
+        animate="visible"
+        initial="hidden"
+        className="MainSection"
+      >
         <Container>
-          <div className="contentWrapper">
+          <motion.div
+            className="contentWrapper"
+          >
             <motion.span
-              animate={{
-                y: 0,
-                opacity: 1,
-                transition: {
-                  type: 'string',
-                  duration: 1
-                }
-              }}
-              initial={{
-                y: '-50px',
-                opacity: 0
-              }}
+              variants={mainSectionVariant}
             >
               For Balboa lovers by Balboa lovers
             </motion.span>
-            <h1>Learn balboa online {process.env.PORT}</h1>
-            <p>
+            <motion.h1 variants={mainSectionVariant}>Learn balboa online {process.env.PORT}</motion.h1>
+            <motion.p variants={mainSectionVariant}>
               A Balboa haven filled with moves and footwork, practice videos and
               tools for solo dancers, couples, practice groups and teachers
               brought to you by top class Balboa dancers1.
-            </p>
-            <div className="buttonsWrapper">
+            </motion.p>
+            <motion.div variants={mainSectionVariant} className="buttonsWrapper">
               <button className="blueButton">Try for free</button>
 
               <div className="videoButtonWrapper">
@@ -95,18 +112,19 @@ export default function Home() {
                 </button>
                 <span>Play video</span>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           <div className="imgWrapper">
-            <img
+            <motion.img
               src="/assets/img/planet.png"
               alt="planet"
               width={750}
               height={750}
+              variants={imgRightVariant}
             />
           </div>
         </Container>
-      </section>
+      </motion.section>
 
       <section className="takeTest">
         <Container>
@@ -122,15 +140,11 @@ export default function Home() {
             </div>
           </div>
           <div ref={ref} className="imgWrapper">
-            <motion.img
+            <Image
               src="/assets/img/quizePhoto.png"
               width={730}
               height={495}
               alt="planet"
-              animate={animation}
-              initial={{
-                x: '100vw'
-              }}
             />
           </div>
         </Container>

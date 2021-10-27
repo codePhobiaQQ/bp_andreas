@@ -6,12 +6,17 @@ module.exports = {
     return create(ctx);
   },
   async login(ctx) {
-    const userData = await login(ctx);
-    console.log(userData);
-    const token = await generateToken(userData);
-    return {
-      user: userData,
-      jwt: token
-    };
+    try {
+      const userData = await login(ctx);
+      console.log(userData);
+      const token = await generateToken(userData);
+      return {
+        user: userData,
+        jwt: token
+      }
+    } catch (e) {
+      ctx.status(404)
+      return e.message;
+    }
   }
 };

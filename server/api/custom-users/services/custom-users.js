@@ -31,7 +31,6 @@ module.exports = {
       if (!schema.validate(ctx.request.body.password)) {
         throw new Error("Incorrect password");
       }
-      console.log(!schema.validate(ctx.request.body.password))
       // ------------------------------------------------------------------------
 
       await model.create(candidate);
@@ -50,7 +49,6 @@ module.exports = {
         throw new Error("User with this email doesn't exists");
       }
       const isPasswEqual = await bcrypt.compare(userData.password, candidate.password);
-      console.log(isPasswEqual);
       if (!isPasswEqual) {
         throw new Error("Incorrect password");
       }
