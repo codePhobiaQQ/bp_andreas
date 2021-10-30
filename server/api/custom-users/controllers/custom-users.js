@@ -3,7 +3,9 @@ const { generateToken } = require('./../services/jwt-token');
 
 module.exports = {
   async create(ctx) {
-    return create(ctx);
+    const user = await create(ctx);
+    console.log(user);
+    return user;
   },
   async login(ctx) {
     try {
@@ -15,8 +17,7 @@ module.exports = {
         jwt: token
       }
     } catch (e) {
-      ctx.status(404)
-      return e.message;
+      return e;
     }
   }
 };

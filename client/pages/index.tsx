@@ -65,7 +65,6 @@ export default function Home() {
   //   }
   // }, [inView])
 
-
   return (
     <MainHeader setAuthVisible={setAuthVisible}>
       <CSSTransition
