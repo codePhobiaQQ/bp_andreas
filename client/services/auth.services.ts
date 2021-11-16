@@ -8,13 +8,18 @@ export default class AuthServices {
     email: string,
     password: string
   ): Promise<AxiosResponse<AuthResponse>> {
-    const user = await axios.post<AuthResponse>(
-      `${back_url}/custom-users/login`,
-      { email, password }
-    );
-    console.log(user.data);
-    localStorage.setItem("token", user.data.jwt);
-    return user;
+    try {
+      const user = await axios.post<AuthResponse>(
+        `${back_url}/custom-users/login`,
+        { email, password }
+      );
+      console.log(user.data);
+      localStorage.setItem("token", user.data.jwt);
+      return user;
+    } catch (e) {
+      console.log(e.message);
+      return e;
+    }
   }
 
   static async registration(

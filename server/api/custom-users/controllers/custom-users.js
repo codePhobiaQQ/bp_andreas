@@ -1,23 +1,15 @@
-const { create, login } = require('./../services/custom-users');
-const { generateToken } = require('./../services/jwt-token');
+const { create, login, logged } = require('./../services/custom-users');
 
 module.exports = {
   async create(ctx) {
-    const user = await create(ctx);
-    console.log(user);
-    return user;
+    return create(ctx);
   },
+
   async login(ctx) {
-    try {
-      const userData = await login(ctx);
-      console.log(userData);
-      const token = await generateToken(userData);
-      return {
-        user: userData,
-        jwt: token
-      }
-    } catch (e) {
-      return e;
-    }
-  }
+    return login(ctx);
+  },
+
+  async logged(ctx) {
+    return logged(ctx);
+  },
 };

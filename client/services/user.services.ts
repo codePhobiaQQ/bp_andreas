@@ -9,7 +9,8 @@ export default class UserServices {
   }
 
   static async logged(): Promise<any> {
-    return $api.post('/user/logged');
+    console.log($api);
+    return $api.post('/custom-users/logged', {}, { headers: { token: localStorage.getItem('token') } });
   }
 
   static logout(): void {

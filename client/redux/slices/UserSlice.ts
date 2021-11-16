@@ -19,13 +19,16 @@ const initialState: CounterState = {
 
 export const isLogged = createAsyncThunk("logged", async (_, thunkAPI) => {
   try {
+    console.log("herere");
     const response = await UserServices.logged();
+    console.log(response);
     const user = response.data;
     console.log(user);
     thunkAPI.dispatch(setUser(user));
     thunkAPI.dispatch(setLoading(false));
     return user;
   } catch (e) {
+    console.log(e.message);
     console.log(e);
     thunkAPI.dispatch(setLoading(false));
   }

@@ -19,7 +19,7 @@ export default function Home() {
     'hidden': {},
     'visible': {
       transition: {
-        staggerChildren: 0.1
+        staggerChildren: 0.1111
       }
     },
   }

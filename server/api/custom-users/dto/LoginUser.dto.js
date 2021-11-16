@@ -1,10 +1,15 @@
 class LoginUserDto {
-  constructor(user) {
-    this.id = user.id;
-    this.name = user.name;
-    this.secondName = user.secondName;
-    this.level = user.level.level;
-    this.email = user.email;
+  constructor(user, token) {
+    this.user = {
+      id: user.id,
+      name: user.name,
+      secondName: user.secondName,
+      level: user.level,
+      email: user.email,
+      blocked: user.blocked,
+      confirmed: user.confirmed,
+    };
+    this.jwt = token;
   }
 }
 
