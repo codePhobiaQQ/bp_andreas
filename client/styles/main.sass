@@ -1,6 +1,8 @@
 @import "./mixins/_mixins.sass"
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap')
 
+$headHeight: 50px
+
 body
   background-color: #FBFBFD
   position: relative
@@ -159,8 +161,8 @@ span
 
 
 .header
-  //display: flex
-  padding: 25px 0
+  padding: 10px 0
+  height: $headHeight
   .container
     justify-content: space-between
     display: flex
@@ -186,23 +188,18 @@ span
         font-size: 16px
         margin-right: 33px
       .header__try
-        @include dashedButton(133px, 50px)
+        @include dashedButton(123px, 45px)
 
 
 .MainSection
-  margin-top: 70px
+  height: calc(100vh - 50px)
+  min-height: 630px
+  display: flex
+  align-items: center
   .container
     display: flex
     align-items: center
     justify-content: space-between
-  .imgWrapper
-    //width: 100%
-    div
-      //max-width: 650px
-      //margin-top: -100px
-      //margin-right: -150px
-      //height: auto
-
   .contentWrapper
     width: 450px
     span
@@ -238,7 +235,12 @@ span
           font-size: 16px
           margin-bottom: 0
           margin-left: 16px
-
+  .imgWrapper
+    height: 100%
+    img
+      display: block
+      position: relative
+      height: 70%
 
 .takeTest
   margin-top: 150px
@@ -249,8 +251,6 @@ span
   .imgWrapper
     img
       max-width: 730px
-      //margin-top: -100px
-      //margin-right: -150px
       height: auto
   .contentWrapper
     width: 450px
@@ -315,8 +315,6 @@ span
   .imgWrapper
     img
       max-width: 345px
-      //margin-top: -100px
-      //margin-right: -150px
       height: auto
   .contentWrapper
     width: 450px

@@ -1,69 +1,26 @@
 import MainHeader from "../hoc/MainHeader";
 import CSSTransition from "react-transition-group/CSSTransition";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Auth from "../components/auth";
 import Image from "next/image";
 import { Container, Row, Col } from "reactstrap";
 import Tick from "../components/UI/tick";
-import {AnimationControls, motion, useAnimation} from "framer-motion";
+import { motion } from "framer-motion";
+import LeftRightVariants from "./../variants/LeftRightVariants";
 import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   const [authVisible, setAuthVisible] = useState(false);
   const { ref, inView } = useInView({
-    threshold: 0.35
+    threshold: 0.7,
+    triggerOnce: true,
   });
-  const animation: AnimationControls = useAnimation();
 
-  const wrapperVariant = {
-    'hidden': {},
-    'visible': {
-      transition: {
-        staggerChildren: 0.1111
-      }
-    },
-  }
-
-  const mainSectionVariant = {
-    'hidden': {
-      y: -20,
-      opacity: 0
-    },
-    'visible': {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        duration: 1.5,
-      },
-    },
-  }
-
-  const imgRightVariant = {
-    'hidden': {
-      opacity: 0,
-      x: 100
-    },
-    'visible': {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: 'spring',
-        duration: 1.5,
-        stiffness: 100
-      }
-    }
-  }
-
-  // useEffect(() => {
-  //   console.log(inView);
-  //   if (inView) {
-  //     console.log('here');
-  //     animation.start({
-  //       x: '0',
-  //     })
-  //   }
-  // }, [inView])
+  const variants = new LeftRightVariants(0.7, 0.7);
+  const wrapperVariant = variants.wrapperVariant;
+  const textVariantLeft = variants.textVariantLeft;
+  const textVariantRight = variants.textVariantRight;
+  const photoVariant = variants.photoVariant;
 
   return (
     <MainHeader setAuthVisible={setAuthVisible}>
@@ -76,28 +33,21 @@ export default function Home() {
         <Auth setAuthVisible={setAuthVisible} />
       </CSSTransition>
 
-      <motion.section
-        variants={wrapperVariant}
-        animate="visible"
-        initial="hidden"
-        className="MainSection"
-      >
+      <section className="MainSection">
         <Container>
           <motion.div
             className="contentWrapper"
           >
-            <motion.span
-              variants={mainSectionVariant}
-            >
+            <span>
               For Balboa lovers by Balboa lovers
-            </motion.span>
-            <motion.h1 variants={mainSectionVariant}>Learn balboa online {process.env.PORT}</motion.h1>
-            <motion.p variants={mainSectionVariant}>
+            </span>
+            <h1>Learn balboa online {process.env.PORT}</h1>
+            <p>
               A Balboa haven filled with moves and footwork, practice videos and
               tools for solo dancers, couples, practice groups and teachers
               brought to you by top class Balboa dancers1.
-            </motion.p>
-            <motion.div variants={mainSectionVariant} className="buttonsWrapper">
+            </p>
+            <div className="buttonsWrapper">
               <button className="blueButton">Try for free</button>
 
               <div className="videoButtonWrapper">
@@ -111,19 +61,18 @@ export default function Home() {
                 </button>
                 <span>Play video</span>
               </div>
-            </motion.div>
+            </div>
           </motion.div>
           <div className="imgWrapper">
-            <motion.img
+            <img
               src="/assets/img/planet.png"
               alt="planet"
               width={750}
               height={750}
-              variants={imgRightVariant}
             />
           </div>
         </Container>
-      </motion.section>
+      </section>
 
       <section className="takeTest">
         <Container>

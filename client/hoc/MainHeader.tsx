@@ -67,9 +67,6 @@ const MainHeader = (props: IHeader) => {
             <button className="header__try">Try for free</button>
           </div>
         </Container>
-        {/*<div className="container">*/}
-
-        {/*</div>*/}
       </header>
       {props.children}
     </>
