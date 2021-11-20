@@ -13,6 +13,29 @@ export default class LeftRightVariants {
       }
     },
   }
+  mainVariantWrapper = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.4,
+      }
+    }
+  }
+  mainVariantChildren = {
+    hidden: {
+      opacity: 0,
+      y: -35,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.7,
+      }
+    }
+  }
+
+
   textVariantRight = {
     hidden: {
       x: 100,
@@ -28,7 +51,7 @@ export default class LeftRightVariants {
   }
   photoVariant = {
     hidden: {
-      scale: 0.97,
+      scale: 0.95,
       opacity: 0,
     },
     visible: {
@@ -71,11 +94,19 @@ export default class LeftRightVariants {
   }
   constructor(duration: number, interval: number) {
     this.wrapperVariant.visible.transition.staggerChildren = duration;
+
     this.textVariantLeft.visible.transition.duration = duration;
+
     this.textVariantRight.visible.transition.duration = duration;
+
     this.photoVariant.visible.transition.duration = duration;
+
     this.fadeInBottom.visible.transition.duration = duration;
+
     this.fadeIn.visible.transition.duration = duration;
+
+    this.mainVariantChildren.visible.transition.duration = duration;
+
   }
 }
 
