@@ -36,10 +36,10 @@ const MainHeader = (props: IHeader) => {
           </div>
           <ul className="header__header-links">
             <li>
-              <a href="#">Test</a>
+              <a href="#TestSection">Test</a>
             </li>
             <li>
-              <a href="#">About</a>
+              <a href="#AboutSection">About</a>
             </li>
             <li>
               <a href="#">Teachers</a>

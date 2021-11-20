@@ -3,6 +3,9 @@
 
 $headHeight: 70px
 
+html
+  overflow-x: hidden !important
+
 body
   background-color: #FBFBFD
   position: relative
@@ -10,6 +13,7 @@ body
   line-height: 1.6em
   font-size: 16px
   font-family: 'Poppins', sans-serif
+  overflow-x: hidden !important
 
 .section
   width: 100%
@@ -249,7 +253,6 @@ span
       max-width: 760px
 
 
-
 .takeTest
   height: 100vh
   display: flex
@@ -314,15 +317,21 @@ span
 
 
 .aboutSection
-  margin-top: 150px
+  height: 100vh
+  display: flex
+  align-items: center
   .container
     display: flex
     justify-content: space-between
     align-items: center
   .imgWrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 100%
     img
+      height: 80%
       max-width: 345px
-      height: auto
   .contentWrapper
     width: 450px
     span
@@ -335,8 +344,40 @@ span
       &:first-child
         margin-bottom: 21px
 
+.TeachersSection
+  margin-top: 130px
+  span
+    @include blueLabel
+    font-size: 14px
+    margin-bottom: 13px
+    text-align: center
+  h2
+    @include SubMainHeader(78px)
+    text-align: center
+  .container
+    display: flex
+  .teachersSlider
+    width: 50%
+    aspect-ratio: 1 / 1
+    max-width: 540px
+    max-height: 540px
+    margin: 0
+    margin-right: auto
+    border-radius: 50%
+    .swiper-slide
+      width: 100%
+      height: auto
+      border-radius: 50%
+      overflow: hidden
+      img
+        object-fit: cover
+        height: 100%
+        width: 100%
+    
+
 
 .subscription
+  margin-top: 130px
   span
     @include blueLabel
     font-size: 14px

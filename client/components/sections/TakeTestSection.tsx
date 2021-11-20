@@ -9,7 +9,6 @@ export default function TakeTestSection() {
         threshold: 0.6,
         triggerOnce: true,
       });
-
     const variants = new LeftRightVariants(0.7, 0.7);
     const wrapperVariant = variants.wrapperVariant;
     const mainVariantWrapper = variants.mainVariantWrapper;
@@ -17,12 +16,13 @@ export default function TakeTestSection() {
     const rightAppear = variants.textVariantRight;
 
     return (
-        <motion.section 
+      <motion.section 
           ref={ref} 
           className="takeTest"
           variants={wrapperVariant}
           initial="hidden"
           animate={inView ? "visible" : ""}
+          id="TestSection"
         >
           <Container>
             <motion.div

@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/main.sass";
 import "../styles/admin.scss";
 import "../styles/LoaderPage.css";
+import 'swiper/css';
 import type { AppProps } from "next/app";
 import React, { FC, useEffect, useState } from "react";
 import withRedux from "next-redux-wrapper";

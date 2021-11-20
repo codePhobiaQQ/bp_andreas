@@ -1,10 +1,27 @@
 import { Container } from "reactstrap";
 import Tick from "../UI/tick";
 import Tilt from "react-parallax-tilt"
+import { useInView } from "react-intersection-observer";
+import LeftRightVariants from "../../variants/LeftRightVariants";
+import { motion } from "framer-motion";
 
 export default function SubscriptionSection() {
+    const { ref, inView } = useInView({
+      threshold: 0.6,
+      triggerOnce: true,
+    });
+    const variants = new LeftRightVariants(0.7, 0.7);
+    const wrapperVariant = variants.wrapperVariant;
+    const fadeInBottom = variants.fadeInBottom;
+
     return (
-        <section className="subscription">
+      <motion.section 
+        ref={ref}
+        className="subscription"
+        variants={wrapperVariant}
+        initial="hidden"
+        animate={inView ? "visible" : ""}
+      >
         <Container>
           <span>Yes, it can we free</span>
           <h2>Subscription</h2>
@@ -14,7 +31,7 @@ export default function SubscriptionSection() {
               tiltMaxAngleX={6}
               tiltMaxAngleY={6}
             >
-              <div className="card">
+              <motion.div variants={fadeInBottom} className="card">
                 <div className="circle">
                   <svg
                     width="26"
@@ -59,14 +76,14 @@ export default function SubscriptionSection() {
                   <div className="advantage non-active">Benefet of this</div>
                 </div>
                 <button>Try for Free</button>
-              </div>
+              </motion.div>
             </Tilt>
 
             <Tilt
               tiltMaxAngleX={6}
               tiltMaxAngleY={6}
             >
-              <div className="card premium">
+              <motion.div variants={fadeInBottom} className="card premium">
                 <div className="circle">
                   <svg
                     width="41"
@@ -145,11 +162,11 @@ export default function SubscriptionSection() {
                   </svg>
                   <span>Go Premium</span>
                 </button>
-              </div>
+              </motion.div>
             </Tilt>
 
           </div>
         </Container>
-      </section>
+      </motion.section>
     )
 }

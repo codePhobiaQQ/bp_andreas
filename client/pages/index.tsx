@@ -9,10 +9,11 @@ import Tilt from 'react-parallax-tilt';
 import LeftRightVariants from "./../variants/LeftRightVariants";
 import { useInView } from "react-intersection-observer";
 import TakeTestSection from "../components/sections/TakeTestSection";
-import HowWork from "../components/sections/HowWork";
+import HowWorkSection from "../components/sections/HowWorkSection";
 import AndNumbersSection from "../components/sections/AndNumbersSection";
 import SubscriptionSection from "../components/sections/SubscriptionSection";
 import AboutSection from "../components/sections/AboutSection";
+import TeachersSection from "../components/sections/TeachersSection";
 
 export default function Home() {
   const [authVisible, setAuthVisible] = useState(false);
@@ -106,9 +107,11 @@ export default function Home() {
 
       <TakeTestSection />
 
-      <HowWork />
+      <HowWorkSection />
 
       <AboutSection />
+
+      <TeachersSection />
 
       <SubscriptionSection />
 
@@ -175,6 +178,7 @@ export default function Home() {
           </div>
         </Container>
       </footer>
+
     </MainHeader>
   );
 }
