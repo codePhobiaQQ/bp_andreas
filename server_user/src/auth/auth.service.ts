@@ -12,8 +12,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { TokenService } from '../token/token.service';
-import { TokenDto } from '../token/dto/token.dto';
 import { GenerateTokenDto } from '../token/dto/generate-token.dto';
+import {RegisterUserI} from "./dto/register-user.dto";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +24,7 @@ export class AuthService {
     private tokenService: TokenService,
   ) {}
 
-  async registration(userDto: CreateUserDto): Promise<any> {
+  async registration(userDto: CreateUserDto): Promise<RegisterUserI> {
     //Создаем пользователя
     const user = await this.userService.create(userDto);
     console.log(user);
@@ -39,8 +39,8 @@ export class AuthService {
       user.isActive,
       user.roles,
     );
-    const accessToken = await this.tokenService.generateToken(tokenPayload);
-    return { user, accessToken };
+    const token = await this.tokenService.generateToken(tokenPayload);
+    return { user, accessToken: token.accessToken };
   }
 
   async login(loginDto: LoginUserDto): Promise<ReturnLoginDto> {
@@ -54,11 +54,11 @@ export class AuthService {
       user.roles,
     );
     //Генерируем для него новый токен
-    const accessToken = await this.tokenService.generateToken(tokenPayload);
+    const token = await this.tokenService.generateToken(tokenPayload);
 
     //Возвращаем новый токен, чтобы перезаписать его в localstorage
     return {
-      accessToken,
+      accessToken: token.accessToken,
       user: userDto,
     };
   }

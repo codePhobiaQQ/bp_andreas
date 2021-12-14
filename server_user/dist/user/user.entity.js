@@ -8,10 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
-const token_entity_1 = require("src/token/token.entity");
 const typeorm_1 = require("typeorm");
 const role_entity_1 = require("../role/role.entity");
 let User = class User extends typeorm_1.BaseEntity {
@@ -53,10 +51,6 @@ __decorate([
     typeorm_1.JoinTable(),
     __metadata("design:type", Array)
 ], User.prototype, "roles", void 0);
-__decorate([
-    typeorm_1.OneToOne(() => token_entity_1.Token),
-    __metadata("design:type", typeof (_a = typeof token_entity_1.Token !== "undefined" && token_entity_1.Token) === "function" ? _a : Object)
-], User.prototype, "token", void 0);
 User = __decorate([
     typeorm_1.Entity()
 ], User);

@@ -1,4 +1,3 @@
-import { Token } from 'src/token/token.entity';
 import { BaseEntity } from 'typeorm';
 import { Role } from '../role/role.entity';
 export declare class User extends BaseEntity {
@@ -11,5 +10,4 @@ export declare class User extends BaseEntity {
     banReason: string;
     isActive: boolean;
     roles: Role[];
-    token: Token;
 }

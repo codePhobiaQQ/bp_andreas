@@ -1,4 +1,3 @@
-import { Token } from 'src/token/token.entity';
 import {
   BaseEntity,
   Column,
@@ -40,7 +39,4 @@ export class User extends BaseEntity {
   @ManyToMany(() => Role, (role) => role.users)
   @JoinTable()
   roles: Role[];
-
-  @OneToOne(() => Token)
-  token: Token;
 }

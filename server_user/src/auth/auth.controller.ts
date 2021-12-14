@@ -4,11 +4,11 @@ import { AuthService } from './auth.service';
 import { User } from '../user/user.entity';
 import { TokenService } from '../token/token.service';
 import { Request, Response } from 'express';
+import {RegisterUserI} from "./dto/register-user.dto";
 
 interface IRegister {
   user: User;
   accessToken: string;
-  refreshToken: string;
 }
 
 @Controller('auth')
@@ -21,7 +21,7 @@ export class AuthController {
   @Post('registration')
   async registration(
     @Body() userDto: CreateUserDto,
-  ): Promise<Response<User>> {
+  ): Promise<RegisterUserI> {
     return this.authService.registration(userDto);
   }
 
@@ -32,10 +32,6 @@ export class AuthController {
     @Req() request: Request,
   ) {
     const user = await this.authService.login(userDto);
-    await response.cookie('token', user.refreshToken, {
-      maxAge: 30 * 24 * 60 * 60 * 1000,
-      httpOnly: true,
-    });
     return response.json({ user: user.user, accessToken: user.accessToken });
   }
 

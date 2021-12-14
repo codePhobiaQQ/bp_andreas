@@ -5,9 +5,6 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { GenerateTokenDto } from './dto/generate-token.dto';
-import { InjectRepository } from '@nestjs/typeorm';
-import { DeleteResult, Repository } from 'typeorm';
-import { TokenDto } from './dto/token.dto';
 import { UserDtoToClient } from 'src/auth/dto/login-user.dto';
 
 interface ITokens {

@@ -36,16 +36,16 @@ let AuthService = class AuthService {
         const role = await this.roleService.getByValue('default');
         await this.userService.giveRole({ user, roles: [role] });
         const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles);
-        const token = await this.tokenService.generateToken(tokenPayload);
-        return { user, accessToken: token.accessToken };
+        const accessToken = await this.tokenService.generateToken(tokenPayload);
+        return { user, accessToken };
     }
     async login(loginDto) {
         const user = await this.validateUser(loginDto);
         const userDto = new login_user_dto_1.UserDtoToClient(user);
         const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles);
-        const token = await this.tokenService.generateToken(tokenPayload);
+        const accessToken = await this.tokenService.generateToken(tokenPayload);
         return {
-            accessToken: token.accessToken,
+            accessToken,
             user: userDto,
         };
     }
