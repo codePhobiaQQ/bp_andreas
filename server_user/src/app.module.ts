@@ -8,6 +8,7 @@ import { TokenModule } from './token/token.module';
 import 'reflect-metadata';
 import { ResponseMiddleware } from './middleware/response.middleware';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { MailModule } from './mail/mail.module';
 import OrmConfig from './ormconfig';
 import * as path from 'path';
 
@@ -24,6 +25,7 @@ import * as path from 'path';
     AuthModule,
     RoleModule,
     TokenModule,
+    MailModule,
   ],
 })
 export class AppModule implements NestModule {

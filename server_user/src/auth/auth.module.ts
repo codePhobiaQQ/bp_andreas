@@ -7,6 +7,7 @@ import { User } from '../user/user.entity';
 import { RoleModule } from '../role/role.module';
 import { Role } from '../role/role.entity';
 import { TokenModule } from '../token/token.module';
+import { MailModule } from "../mail/mail.module";
 
 @Module({
   controllers: [AuthController],
@@ -16,6 +17,7 @@ import { TokenModule } from '../token/token.module';
     UserModule,
     RoleModule,
     TokenModule,
+    MailModule,
   ],
   exports: [AuthService],
 })

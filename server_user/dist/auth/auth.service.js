@@ -23,26 +23,29 @@ const typeorm_2 = require("typeorm");
 const bcrypt = require("bcrypt");
 const token_service_1 = require("../token/token.service");
 const generate_token_dto_1 = require("../token/dto/generate-token.dto");
+const mail_service_1 = require("../mail/mail.service");
 let AuthService = class AuthService {
-    constructor(usersRepository, userService, roleService, tokenService) {
+    constructor(usersRepository, userService, roleService, tokenService, mailService) {
         this.usersRepository = usersRepository;
         this.userService = userService;
         this.roleService = roleService;
         this.tokenService = tokenService;
+        this.mailService = mailService;
     }
     async registration(userDto) {
         const user = await this.userService.create(userDto);
         console.log(user);
         const role = await this.roleService.getByValue('default');
         await this.userService.giveRole({ user, roles: [role] });
-        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles);
+        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles, user.name);
         const token = await this.tokenService.generateToken(tokenPayload);
+        await this.mailService.confirmEmail(user.email);
         return { user, accessToken: token.accessToken };
     }
     async login(loginDto) {
         const user = await this.validateUser(loginDto);
         const userDto = new login_user_dto_1.UserDtoToClient(user);
-        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles);
+        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles, user.name);
         const token = await this.tokenService.generateToken(tokenPayload);
         return {
             accessToken: token.accessToken,
@@ -70,7 +73,8 @@ AuthService = __decorate([
     __metadata("design:paramtypes", [typeorm_2.Repository,
         user_service_1.UserService,
         role_service_1.RoleService,
-        token_service_1.TokenService])
+        token_service_1.TokenService,
+        mail_service_1.MailService])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

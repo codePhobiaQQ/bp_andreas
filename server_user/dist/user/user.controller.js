@@ -22,6 +22,10 @@ let UserController = class UserController {
     viewAll() {
         return this.userService.viewAll();
     }
+    logged(headers) {
+        console.log(headers.token);
+        return this.userService.logged(headers.token);
+    }
     getById(id) {
         console.log(typeof id);
         return this.userService.getUserById(id);
@@ -33,6 +37,13 @@ __decorate([
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "viewAll", null);
+__decorate([
+    common_1.Post('logged'),
+    __param(0, common_1.Headers()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "logged", null);
 __decorate([
     common_1.Get('get-by-id/:id'),
     __param(0, common_1.Param()),

@@ -20,10 +20,12 @@ const user_entity_1 = require("./user.entity");
 const bcrypt = require("bcrypt");
 const role_entity_1 = require("../role/role.entity");
 const give_role_dto_1 = require("./dto/give-role.dto");
+const token_service_1 = require("../token/token.service");
 let UserService = class UserService {
-    constructor(usersRepository, roleRepository) {
+    constructor(usersRepository, roleRepository, tokenService) {
         this.usersRepository = usersRepository;
         this.roleRepository = roleRepository;
+        this.tokenService = tokenService;
     }
     async create(userDto) {
         const hashPassword = await bcrypt.hash(userDto.password, 3);
@@ -33,6 +35,12 @@ let UserService = class UserService {
             name: userDto.name,
         });
         await this.usersRepository.save(user);
+        return user;
+    }
+    async logged(token) {
+        console.log("here");
+        console.log(token, "herere");
+        const user = await this.tokenService.validateAccessToken(token);
         return user;
     }
     async giveRole(giveRoleDto) {
@@ -58,7 +66,8 @@ UserService = __decorate([
     __param(0, typeorm_1.InjectRepository(user_entity_1.User)),
     __param(1, typeorm_1.InjectRepository(role_entity_1.Role)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository])
+        typeorm_2.Repository,
+        token_service_1.TokenService])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

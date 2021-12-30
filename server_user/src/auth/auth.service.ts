@@ -14,6 +14,7 @@ import * as bcrypt from 'bcrypt';
 import { TokenService } from '../token/token.service';
 import { GenerateTokenDto } from '../token/dto/generate-token.dto';
 import {RegisterUserI} from "./dto/register-user.dto";
+import {MailService} from "../mail/mail.service";
 
 @Injectable()
 export class AuthService {
@@ -22,6 +23,7 @@ export class AuthService {
     private userService: UserService,
     private roleService: RoleService,
     private tokenService: TokenService,
+    private mailService: MailService,
   ) {}
 
   async registration(userDto: CreateUserDto): Promise<RegisterUserI> {
@@ -38,8 +40,10 @@ export class AuthService {
       user.email,
       user.isActive,
       user.roles,
+      user.name,
     );
     const token = await this.tokenService.generateToken(tokenPayload);
+    await this.mailService.confirmEmail(user.email);
     return { user, accessToken: token.accessToken };
   }
 
@@ -52,6 +56,7 @@ export class AuthService {
       user.email,
       user.isActive,
       user.roles,
+      user.name,
     );
     //Генерируем для него новый токен
     const token = await this.tokenService.generateToken(tokenPayload);

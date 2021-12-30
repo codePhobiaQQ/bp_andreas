@@ -2,6 +2,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
   OneToMany,
@@ -36,7 +37,15 @@ export class User extends BaseEntity {
   @Column({ default: false })
   isActive: boolean;
 
+  @Column({ nullable: true })
+  resetLink: string;
+
+  @Column({ nullable: true })
+  confirmLink: string;
+
   @ManyToMany(() => Role, (role) => role.users)
   @JoinTable()
   roles: Role[];
 }
+
+

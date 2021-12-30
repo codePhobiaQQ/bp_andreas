@@ -6,12 +6,14 @@ import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { Role } from 'src/role/role.entity';
 import { GiveRoleDto } from 'src/user/dto/give-role.dto';
+import {TokenService} from "../token/token.service";
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
     @InjectRepository(Role) private roleRepository: Repository<Role>,
+    private tokenService: TokenService,
   ) {}
 
   async create(userDto: CreateUserDto): Promise<User> {
@@ -22,6 +24,13 @@ export class UserService {
       name: userDto.name,
     });
     await this.usersRepository.save(user);
+    return user;
+  }
+
+  async logged(token: string): Promise<any> {
+    console.log("here");
+    console.log(token, "herere");
+    const user = await this.tokenService.validateAccessToken(token);
     return user;
   }
 

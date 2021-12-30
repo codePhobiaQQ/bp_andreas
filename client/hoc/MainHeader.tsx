@@ -5,6 +5,7 @@ import useTypedSelector from "../hooks/useTypedSelector";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { Logout } from "../redux/slices/UserSlice";
+import Head from 'next/head'
 
 interface IHeader {
   children: React.ReactNode;
@@ -22,6 +23,11 @@ const MainHeader = (props: IHeader) => {
 
   return (
     <>
+      <Head>
+        <title>Bal-Academy</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+
       <header className="header">
         <Container>
           <div className="header__logo">

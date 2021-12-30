@@ -23,6 +23,7 @@ export class TokenService {
       id: generateTokenDto.id,
       isActive: generateTokenDto.isActivated,
       roles: generateTokenDto.roles,
+      name: generateTokenDto.name,
     };
     const accessToken = this.jwtService.sign(payload, {
       secret: process.env.SECRET_ACCESS_TOEKN,

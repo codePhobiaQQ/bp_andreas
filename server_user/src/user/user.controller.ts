@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Post, UseGuards, Headers } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -10,6 +10,13 @@ export class UserController {
   viewAll(): Promise<User[]> {
     return this.userService.viewAll();
   }
+
+  @Post('logged')
+  logged(@Headers() headers): Promise<any> {
+    console.log(headers.token)
+    return this.userService.logged(headers.token);
+  }
+
 
   @Get('get-by-id/:id')
   getById(@Param() id: number): Promise<User> {

@@ -17,6 +17,7 @@ const token_module_1 = require("./token/token.module");
 require("reflect-metadata");
 const response_middleware_1 = require("./middleware/response.middleware");
 const serve_static_1 = require("@nestjs/serve-static");
+const mail_module_1 = require("./mail/mail.module");
 const ormconfig_1 = require("./ormconfig");
 const path = require("path");
 let AppModule = class AppModule {
@@ -38,6 +39,7 @@ AppModule = __decorate([
             auth_module_1.AuthModule,
             role_module_1.RoleModule,
             token_module_1.TokenModule,
+            mail_module_1.MailModule,
         ],
     })
 ], AppModule);

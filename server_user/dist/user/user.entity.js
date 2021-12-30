@@ -47,6 +47,14 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "isActive", void 0);
 __decorate([
+    typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "resetLink", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "confirmLink", void 0);
+__decorate([
     typeorm_1.ManyToMany(() => role_entity_1.Role, (role) => role.users),
     typeorm_1.JoinTable(),
     __metadata("design:type", Array)

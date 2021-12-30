@@ -9,5 +9,7 @@ export declare class User extends BaseEntity {
     banned: boolean;
     banReason: string;
     isActive: boolean;
+    resetLink: string;
+    confirmLink: string;
     roles: Role[];
 }

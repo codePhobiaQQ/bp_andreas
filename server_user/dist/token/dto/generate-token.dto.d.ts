@@ -4,5 +4,6 @@ export declare class GenerateTokenDto {
     email: string;
     isActivated: boolean;
     roles: Role[];
-    constructor(id: number, email: string, isActivated: boolean, roles: Role[]);
+    name: string;
+    constructor(id: number, email: string, isActivated: boolean, roles: Role[], name: string);
 }

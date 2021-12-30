@@ -16,6 +16,7 @@ const user_entity_1 = require("../user/user.entity");
 const role_module_1 = require("../role/role.module");
 const role_entity_1 = require("../role/role.entity");
 const token_module_1 = require("../token/token.module");
+const mail_module_1 = require("../mail/mail.module");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -27,6 +28,7 @@ AuthModule = __decorate([
             user_module_1.UserModule,
             role_module_1.RoleModule,
             token_module_1.TokenModule,
+            mail_module_1.MailModule,
         ],
         exports: [auth_service_1.AuthService],
     })
