@@ -24,6 +24,8 @@ export class TokenService {
       isActive: generateTokenDto.isActivated,
       roles: generateTokenDto.roles,
       name: generateTokenDto.name,
+      banned: generateTokenDto.banned,
+      banReason: generateTokenDto.banReason,
     };
     const accessToken = this.jwtService.sign(payload, {
       secret: process.env.SECRET_ACCESS_TOEKN,

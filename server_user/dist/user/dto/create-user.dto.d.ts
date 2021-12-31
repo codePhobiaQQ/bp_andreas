@@ -6,3 +6,10 @@ export declare class CreateUserDto {
 export declare class GetUserDto {
     readonly id: number;
 }
+export declare class BanUserDto {
+    readonly id: number;
+    readonly reason: string;
+}
+export declare class UnbanUserDto {
+    readonly id: number;
+}

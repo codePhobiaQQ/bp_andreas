@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
+import { BanUserDto, CreateUserDto, UnbanUserDto } from './dto/create-user.dto';
 import { User } from './user.entity';
 import { Role } from 'src/role/role.entity';
 import { GiveRoleDto } from 'src/user/dto/give-role.dto';
@@ -16,5 +16,7 @@ export declare class UserService {
     logged(token: string): Promise<UserDtoToClient>;
     giveRole(giveRoleDto: GiveRoleDto): Promise<User>;
     viewAll(): Promise<User[]>;
+    ban({ id, reason }: BanUserDto): Promise<User>;
+    unban({ id }: UnbanUserDto): Promise<User>;
     getUserById(id: number): Promise<User>;
 }

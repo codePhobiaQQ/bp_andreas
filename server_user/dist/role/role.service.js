@@ -46,28 +46,55 @@ let RoleService = class RoleService {
             throw new common_1.HttpException(e.message, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    async add(userId) {
-        try {
-            const role = await this.getByValue('admin');
-            const user = await this.userService.getUserById(userId);
-            console.log('user', user);
-            console.log('role', role);
-            let userHasRole = 0;
-            user.roles.map((userRole) => {
-                if (JSON.stringify(userRole) === JSON.stringify(role)) {
-                    userHasRole = 1;
-                }
-            });
-            if (!userHasRole) {
-                user.roles.push(role);
+    async add({ userId, roleName }) {
+        const role = await this.getByValue('admin');
+        if (!role) {
+            throw new common_1.NotFoundException("Such a role was not found");
+        }
+        const user = await this.userService.getUserById(userId);
+        if (!user) {
+            throw new common_1.NotFoundException("The user with this id was not found");
+        }
+        let userHasRole = 0;
+        user.roles.map((userRole) => {
+            if (JSON.stringify(userRole) === JSON.stringify(role)) {
+                userHasRole = 1;
             }
-            await this.userRepository.save(user);
-            return user;
+        });
+        if (userHasRole) {
+            throw new common_1.BadRequestException("The user already has such a role");
         }
-        catch (e) {
-            console.log(e);
-            throw new common_1.HttpException(e.message, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
+        user.roles.push(role);
+        await this.userRepository.save(user);
+        return user;
+    }
+    async remove({ userId, roleName }) {
+        const role = await this.getByValue('admin');
+        if (!role) {
+            throw new common_1.NotFoundException("Such a role was not found");
         }
+        const user = await this.userService.getUserById(userId);
+        if (!user) {
+            throw new common_1.NotFoundException("The user with this id was not found");
+        }
+        let userHasRole = 0;
+        const finalRoles = [];
+        user.roles.reduce((memo, userRole) => {
+            if (!(JSON.stringify(userRole) === JSON.stringify(role))) {
+                memo.push(userRole);
+                console.log("test ", userRole);
+            }
+            else {
+                userHasRole = 1;
+            }
+            return memo;
+        }, finalRoles);
+        if (!userHasRole) {
+            throw new common_1.BadRequestException("The user does not have this role");
+        }
+        user.roles = finalRoles;
+        await this.userRepository.save(user);
+        return user;
     }
 };
 RoleService = __decorate([

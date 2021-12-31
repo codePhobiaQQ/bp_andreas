@@ -37,6 +37,9 @@ let UserService = class UserService {
             email: userDto.email,
             password: hashPassword,
             name: userDto.name,
+            isActive: false,
+            banned: false,
+            banReason: null,
         });
         const role = await this.roleService.getByValue("default");
         user.roles = [role];
@@ -58,8 +61,27 @@ let UserService = class UserService {
     async viewAll() {
         return await this.usersRepository.find({ relations: ['roles'] });
     }
+    async ban({ id, reason }) {
+        const user = await this.getUserById(id);
+        if (!user) {
+            throw new common_1.NotFoundException("The user with this id was not found");
+        }
+        user.banned = true;
+        user.banReason = reason;
+        await this.usersRepository.save(user);
+        return user;
+    }
+    async unban({ id }) {
+        const user = await this.getUserById(id);
+        if (!user) {
+            throw new common_1.NotFoundException("The user with this id was not found");
+        }
+        user.banned = false;
+        user.banReason = null;
+        await this.usersRepository.save(user);
+        return user;
+    }
     async getUserById(id) {
-        console.log("here");
         const user = await this.usersRepository.findOne({
             where: { id },
             relations: ['roles'],

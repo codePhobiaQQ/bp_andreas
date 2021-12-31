@@ -1,3 +1,4 @@
+import { Role } from 'src/role/role.entity';
 import { User } from '../../user/user.entity';
 
 export class LoginUserDto {
@@ -10,6 +11,8 @@ interface IUserDto {
   email: string;
   id: number;
   isActive: boolean;
+  banned: boolean;
+  banReason: string;
 }
 
 export interface ReturnLoginDto {
@@ -18,15 +21,19 @@ export interface ReturnLoginDto {
 }
 
 export class UserDtoToClient {
-  email;
-  id;
-  isActive;
-  roles;
+  email: string;
+  id: number;
+  isActive: boolean;
+  roles: Role[];
+  banned: boolean;
+  banReason: string;
 
   constructor(user) {
     this.email = user.email;
     this.id = user.id;
     this.isActive = user.isActive;
     this.roles = user.roles;
+    this.banned = user.banned;
+    this.banReason = user.banReason;
   }
 }

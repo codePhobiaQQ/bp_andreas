@@ -1,4 +1,4 @@
-import { CreateRoleDto } from './dto/create-role.dto';
+import { AddRoleDto, CreateRoleDto } from './dto/create-role.dto';
 import { Role } from './role.entity';
 import { Repository } from 'typeorm';
 import { UserService } from '../user/user.service';
@@ -10,5 +10,6 @@ export declare class RoleService {
     constructor(roleRepository: Repository<Role>, userRepository: Repository<User>, userService: UserService);
     create(roleDto: CreateRoleDto): Promise<Role>;
     getByValue(value: string): Promise<Role>;
-    add(userId: number): Promise<User>;
+    add({ userId, roleName }: AddRoleDto): Promise<User>;
+    remove({ userId, roleName }: AddRoleDto): Promise<User>;
 }

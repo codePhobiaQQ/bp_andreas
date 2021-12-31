@@ -5,5 +5,7 @@ export declare class GenerateTokenDto {
     isActivated: boolean;
     roles: Role[];
     name: string;
-    constructor(id: number, email: string, isActivated: boolean, roles: Role[], name: string);
+    banned: boolean;
+    banReason: string;
+    constructor(id: number, email: string, isActivated: boolean, name: string, banned: boolean, banReason: string, roles: Role[]);
 }

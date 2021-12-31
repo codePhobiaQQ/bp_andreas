@@ -27,6 +27,12 @@ let UserController = class UserController {
         console.log(headers.token);
         return this.userService.logged(headers.token);
     }
+    ban(banUserDto) {
+        return this.userService.ban(banUserDto);
+    }
+    unban(unbanUserDto) {
+        return this.userService.unban(unbanUserDto);
+    }
     getById(getUserDto) {
         console.log(getUserDto.id);
         return this.userService.getUserById(getUserDto.id);
@@ -45,6 +51,20 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "logged", null);
+__decorate([
+    common_1.Post('ban'),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_dto_1.BanUserDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "ban", null);
+__decorate([
+    common_1.Post('unban'),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_user_dto_1.UnbanUserDto]),
+    __metadata("design:returntype", Promise)
+], UserController.prototype, "unban", null);
 __decorate([
     common_1.Get('get-by-id/:id'),
     __param(0, common_1.Param()),

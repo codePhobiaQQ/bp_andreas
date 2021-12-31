@@ -1,7 +1,7 @@
-import { Controller, Get, Param, Post, UseGuards, Headers } from '@nestjs/common';
+import {Controller, Get, Param, Post, UseGuards, Headers, Body} from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
-import {GetUserDto} from "./dto/create-user.dto";
+import {BanUserDto, GetUserDto, UnbanUserDto} from "./dto/create-user.dto";
 
 @Controller('user')
 export class UserController {
@@ -18,6 +18,15 @@ export class UserController {
     return this.userService.logged(headers.token);
   }
 
+  @Post('ban')
+  ban(@Body() banUserDto: BanUserDto): Promise<User> {
+    return this.userService.ban(banUserDto);
+  }
+
+  @Post('unban')
+  unban(@Body() unbanUserDto: UnbanUserDto): Promise<User> {
+    return this.userService.unban(unbanUserDto);
+  }
 
   @Get('get-by-id/:id')
   getById(@Param() getUserDto: GetUserDto): Promise<User> {

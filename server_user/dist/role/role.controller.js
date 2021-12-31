@@ -21,12 +21,13 @@ let RoleController = class RoleController {
         this.roleService = roleService;
     }
     create(roleDto) {
-        const role = this.roleService.create(roleDto);
-        return role;
+        return this.roleService.create(roleDto);
     }
-    async add(data) {
-        const user = await this.roleService.add(data.userId);
-        return user;
+    async add(addRoleDto) {
+        return this.roleService.add(addRoleDto);
+    }
+    async remove(removeRoleDto) {
+        return this.roleService.remove(removeRoleDto);
     }
 };
 __decorate([
@@ -40,9 +41,16 @@ __decorate([
     common_1.Post('add'),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
+    __metadata("design:paramtypes", [create_role_dto_1.AddRoleDto]),
     __metadata("design:returntype", Promise)
 ], RoleController.prototype, "add", null);
+__decorate([
+    common_1.Post('remove'),
+    __param(0, common_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [create_role_dto_1.AddRoleDto]),
+    __metadata("design:returntype", Promise)
+], RoleController.prototype, "remove", null);
 RoleController = __decorate([
     common_1.Controller('role'),
     __metadata("design:paramtypes", [role_service_1.RoleService])

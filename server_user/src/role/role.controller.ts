@@ -1,5 +1,5 @@
 import { Body, Controller, Post } from '@nestjs/common';
-import { CreateRoleDto } from './dto/create-role.dto';
+import {AddRoleDto, CreateRoleDto} from './dto/create-role.dto';
 import { RoleService } from './role.service';
 import { Role } from './role.entity';
 import { User } from '../user/user.entity';
@@ -10,13 +10,16 @@ export class RoleController {
 
   @Post('create')
   create(@Body() roleDto: CreateRoleDto): Promise<Role> {
-    const role = this.roleService.create(roleDto);
-    return role;
+    return this.roleService.create(roleDto);
   }
 
   @Post('add')
-  async add(@Body() data: { userId: number }): Promise<User> {
-    const user = await this.roleService.add(data.userId);
-    return user;
+  async add(@Body() addRoleDto: AddRoleDto): Promise<User> {
+    return this.roleService.add(addRoleDto);
+  }
+
+  @Post('remove')
+  async remove(@Body() removeRoleDto: AddRoleDto): Promise<User> {
+    return this.roleService.remove(removeRoleDto);
   }
 }

@@ -34,7 +34,7 @@ let AuthService = class AuthService {
     }
     async registration(userDto) {
         const user = await this.userService.create(userDto);
-        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles, user.name);
+        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.name, user.banned, user.banReason, user.roles);
         const token = await this.tokenService.generateToken(tokenPayload);
         await this.mailService.confirmEmail(user.email);
         return { user, accessToken: token.accessToken };
@@ -42,7 +42,7 @@ let AuthService = class AuthService {
     async login(loginDto) {
         const user = await this.validateUser(loginDto);
         const userDto = new login_user_dto_1.UserDtoToClient(user);
-        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles, user.name);
+        const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.name, user.banned, user.banReason, user.roles);
         const token = await this.tokenService.generateToken(tokenPayload);
         return {
             accessToken: token.accessToken,

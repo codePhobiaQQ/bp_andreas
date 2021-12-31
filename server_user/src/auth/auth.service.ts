@@ -34,8 +34,10 @@ export class AuthService {
       user.id,
       user.email,
       user.isActive,
-      user.roles,
       user.name,
+      user.banned,
+      user.banReason,
+      user.roles,
     );
     const token = await this.tokenService.generateToken(tokenPayload);
     await this.mailService.confirmEmail(user.email);
@@ -50,8 +52,10 @@ export class AuthService {
       user.id,
       user.email,
       user.isActive,
-      user.roles,
       user.name,
+      user.banned,
+      user.banReason,
+      user.roles,
     );
     //Генерируем для него новый токен
     const token = await this.tokenService.generateToken(tokenPayload);

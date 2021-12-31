@@ -1,7 +1,7 @@
 import {BadRequestException, HttpException, Injectable, NotFoundException} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto/create-user.dto';
+import {BanUserDto, CreateUserDto, UnbanUserDto} from './dto/create-user.dto';
 import { User } from './user.entity';
 import * as bcrypt from 'bcrypt';
 import { Role } from 'src/role/role.entity';
@@ -30,6 +30,9 @@ export class UserService {
       email: userDto.email,
       password: hashPassword,
       name: userDto.name,
+      isActive: false,
+      banned: false,
+      banReason: null,
     });
     //Берем дефолтную роль для нового пользователя
     const role = await this.roleService.getByValue("default");
@@ -62,8 +65,29 @@ export class UserService {
     return await this.usersRepository.find({ relations: ['roles'] });
   }
 
+  async ban({ id, reason }: BanUserDto): Promise<User> {
+    const user = await this.getUserById(id);
+    if (!user) {
+      throw new NotFoundException("The user with this id was not found");
+    }
+    user.banned = true;
+    user.banReason = reason;
+    await this.usersRepository.save(user);
+    return user;
+  }
+
+  async unban({ id }: UnbanUserDto): Promise<User> {
+    const user = await this.getUserById(id);
+    if (!user) {
+      throw new NotFoundException("The user with this id was not found");
+    }
+    user.banned = false;
+    user.banReason = null;
+    await this.usersRepository.save(user);
+    return user;
+  }
+
   async getUserById(id: number): Promise<User> {
-    console.log("here")
     const user = await this.usersRepository.findOne({
       where: { id },
       relations: ['roles'],
