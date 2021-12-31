@@ -1,6 +1,7 @@
 export declare class LoginUserDto {
     readonly email: string;
     readonly password: string;
+    readonly name: string;
 }
 interface IUserDto {
     email: string;

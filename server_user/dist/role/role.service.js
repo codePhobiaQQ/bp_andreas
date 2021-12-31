@@ -74,6 +74,7 @@ RoleService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(role_entity_1.Role)),
     __param(1, typeorm_1.InjectRepository(user_entity_1.User)),
+    __param(2, common_1.Inject(common_1.forwardRef(() => user_service_1.UserService))),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
         user_service_1.UserService])

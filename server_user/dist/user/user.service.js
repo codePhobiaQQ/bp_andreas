@@ -21,11 +21,15 @@ const bcrypt = require("bcrypt");
 const role_entity_1 = require("../role/role.entity");
 const give_role_dto_1 = require("./dto/give-role.dto");
 const token_service_1 = require("../token/token.service");
+const role_service_1 = require("../role/role.service");
+const common_2 = require("@nestjs/common");
+const common_3 = require("@nestjs/common");
 let UserService = class UserService {
-    constructor(usersRepository, roleRepository, tokenService) {
+    constructor(usersRepository, roleRepository, tokenService, roleService) {
         this.usersRepository = usersRepository;
         this.roleRepository = roleRepository;
         this.tokenService = tokenService;
+        this.roleService = roleService;
     }
     async create(userDto) {
         const hashPassword = await bcrypt.hash(userDto.password, 3);
@@ -34,30 +38,35 @@ let UserService = class UserService {
             password: hashPassword,
             name: userDto.name,
         });
-        await this.usersRepository.save(user);
+        const role = await this.roleService.getByValue("default");
+        user.roles = [role];
+        user.save();
         return user;
     }
     async logged(token) {
-        console.log("here");
-        console.log(token, "herere");
-        const user = await this.tokenService.validateAccessToken(token);
-        return user;
+        return this.tokenService.validateAccessToken(token);
     }
     async giveRole(giveRoleDto) {
         const user = giveRoleDto.user;
-        user.roles = giveRoleDto.roles;
+        if (user.roles.includes(giveRoleDto.roles[0])) {
+            throw new common_1.BadRequestException("The user already has this role");
+        }
+        user.roles.push(giveRoleDto.roles[0]);
         await this.usersRepository.save(user);
         return user;
     }
     async viewAll() {
-        const users = await this.usersRepository.find({ relations: ['roles'] });
-        return users;
+        return await this.usersRepository.find({ relations: ['roles'] });
     }
     async getUserById(id) {
+        console.log("here");
         const user = await this.usersRepository.findOne({
-            where: { id: id },
+            where: { id },
             relations: ['roles'],
         });
+        if (!user) {
+            throw new common_1.NotFoundException("The user with this id was not found");
+        }
         return user;
     }
 };
@@ -65,9 +74,11 @@ UserService = __decorate([
     common_1.Injectable(),
     __param(0, typeorm_1.InjectRepository(user_entity_1.User)),
     __param(1, typeorm_1.InjectRepository(role_entity_1.Role)),
+    __param(3, common_2.Inject(common_3.forwardRef(() => role_service_1.RoleService))),
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
-        token_service_1.TokenService])
+        token_service_1.TokenService,
+        role_service_1.RoleService])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

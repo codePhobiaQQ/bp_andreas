@@ -15,7 +15,6 @@ const user_entity_1 = require("./user.entity");
 const role_entity_1 = require("../role/role.entity");
 const role_module_1 = require("../role/role.module");
 const token_module_1 = require("../token/token.module");
-const mail_module_1 = require("../mail/mail.module");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([

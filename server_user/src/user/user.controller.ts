@@ -1,6 +1,7 @@
 import { Controller, Get, Param, Post, UseGuards, Headers } from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
+import {GetUserDto} from "./dto/create-user.dto";
 
 @Controller('user')
 export class UserController {
@@ -19,8 +20,8 @@ export class UserController {
 
 
   @Get('get-by-id/:id')
-  getById(@Param() id: number): Promise<User> {
-    console.log(typeof id);
-    return this.userService.getUserById(id);
+  getById(@Param() getUserDto: GetUserDto): Promise<User> {
+    console.log(getUserDto.id);
+    return this.userService.getUserById(getUserDto.id);
   }
 }

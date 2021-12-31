@@ -16,5 +16,5 @@ export declare class AuthService {
     constructor(usersRepository: Repository<User>, userService: UserService, roleService: RoleService, tokenService: TokenService, mailService: MailService);
     registration(userDto: CreateUserDto): Promise<RegisterUserI>;
     login(loginDto: LoginUserDto): Promise<ReturnLoginDto>;
-    validateUser(loginDto: LoginUserDto): Promise<User>;
+    private validateUser;
 }

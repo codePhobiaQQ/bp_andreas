@@ -3,6 +3,7 @@ import { User } from '../../user/user.entity';
 export class LoginUserDto {
   readonly email: string;
   readonly password: string;
+  readonly name: string;
 }
 
 interface IUserDto {

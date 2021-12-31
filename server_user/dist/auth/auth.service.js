@@ -34,9 +34,6 @@ let AuthService = class AuthService {
     }
     async registration(userDto) {
         const user = await this.userService.create(userDto);
-        console.log(user);
-        const role = await this.roleService.getByValue('default');
-        await this.userService.giveRole({ user, roles: [role] });
         const tokenPayload = new generate_token_dto_1.GenerateTokenDto(user.id, user.email, user.isActive, user.roles, user.name);
         const token = await this.tokenService.generateToken(tokenPayload);
         await this.mailService.confirmEmail(user.email);
@@ -58,11 +55,11 @@ let AuthService = class AuthService {
             relations: ['roles'],
         });
         if (!candidate) {
-            throw new common_1.HttpException('Пользователя с таким email нет', common_1.HttpStatus.NOT_FOUND);
+            throw new common_1.NotFoundException("The user with this email was not found");
         }
         const passEqual = await bcrypt.compare(loginDto.password, candidate.password);
         if (!passEqual) {
-            throw new common_1.HttpException('Неверный пароль', common_1.HttpStatus.BAD_REQUEST);
+            throw new common_1.BadRequestException("Wrong password");
         }
         return candidate;
     }

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
+const create_user_dto_1 = require("./dto/create-user.dto");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -26,9 +27,9 @@ let UserController = class UserController {
         console.log(headers.token);
         return this.userService.logged(headers.token);
     }
-    getById(id) {
-        console.log(typeof id);
-        return this.userService.getUserById(id);
+    getById(getUserDto) {
+        console.log(getUserDto.id);
+        return this.userService.getUserById(getUserDto.id);
     }
 };
 __decorate([
@@ -48,7 +49,7 @@ __decorate([
     common_1.Get('get-by-id/:id'),
     __param(0, common_1.Param()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number]),
+    __metadata("design:paramtypes", [create_user_dto_1.GetUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getById", null);
 UserController = __decorate([

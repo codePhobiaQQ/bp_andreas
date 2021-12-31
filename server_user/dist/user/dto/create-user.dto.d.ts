@@ -3,3 +3,6 @@ export declare class CreateUserDto {
     readonly password: string;
     readonly name: string;
 }
+export declare class GetUserDto {
+    readonly id: number;
+}

@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import {BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException} from '@nestjs/common';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { UserService } from '../user/user.service';
 import { User } from '../user/user.entity';
@@ -29,11 +29,6 @@ export class AuthService {
   async registration(userDto: CreateUserDto): Promise<RegisterUserI> {
     //Создаем пользователя
     const user = await this.userService.create(userDto);
-    console.log(user);
-    //Берем для него дефолтную роль юзера
-    const role = await this.roleService.getByValue('default');
-    //Даем ему эту роль
-    await this.userService.giveRole({ user, roles: [role] });
     //Возвращаем юзера
     const tokenPayload = new GenerateTokenDto(
       user.id,
@@ -69,23 +64,20 @@ export class AuthService {
   }
 
   //Валлидируем логин и пароль (есть ли такой пользователь в таблице)
-  async validateUser(loginDto: LoginUserDto): Promise<User> {
+  private async validateUser(loginDto: LoginUserDto): Promise<User> {
     const candidate = await this.usersRepository.findOne({
       where: { email: loginDto.email },
       relations: ['roles'],
     });
     if (!candidate) {
-      throw new HttpException(
-        'Пользователя с таким email нет',
-        HttpStatus.NOT_FOUND,
-      );
+      throw new NotFoundException("The user with this email was not found");
     }
     const passEqual = await bcrypt.compare(
       loginDto.password,
       candidate.password,
     );
     if (!passEqual) {
-      throw new HttpException('Неверный пароль', HttpStatus.BAD_REQUEST);
+      throw new BadRequestException("Wrong password");
     }
     return candidate;
   }

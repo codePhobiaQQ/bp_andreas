@@ -16,9 +16,7 @@ export class RoleController {
 
   @Post('add')
   async add(@Body() data: { userId: number }): Promise<User> {
-    console.log('user');
     const user = await this.roleService.add(data.userId);
-    console.log(user);
     return user;
   }
 }

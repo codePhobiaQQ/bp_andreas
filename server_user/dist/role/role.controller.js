@@ -25,9 +25,7 @@ let RoleController = class RoleController {
         return role;
     }
     async add(data) {
-        console.log('user');
         const user = await this.roleService.add(data.userId);
-        console.log(user);
         return user;
     }
 };

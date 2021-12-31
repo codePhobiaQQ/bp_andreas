@@ -6,7 +6,6 @@ import { User } from './user.entity';
 import { Role } from '../role/role.entity';
 import { RoleModule } from '../role/role.module';
 import { TokenModule } from 'src/token/token.module';
-import { MailModule } from 'src/mail/mail.module';
 
 @Module({
   controllers: [UserController],

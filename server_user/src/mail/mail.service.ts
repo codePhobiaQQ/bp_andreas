@@ -5,6 +5,7 @@ import {InjectRepository} from "@nestjs/typeorm";
 import {Repository} from "typeorm";
 import {User} from "../user/user.entity";
 import {CheckResetDto} from "./dto/mail.dto";
+import {log} from "util";
 
 @Injectable()
 export class MailService {
@@ -63,8 +64,7 @@ export class MailService {
     });
     console.log("Message sent: %s", info.messageId);
     console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-
-    const user = await User.findOne(email);
+    const user = await User.findOne({where: { email }});
     user.confirmLink = confirmLink;
     await user.save();
   }
