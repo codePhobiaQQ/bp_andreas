@@ -5,7 +5,7 @@ import { IUser } from "../models/IUser";
 
 export default class UserServices {
   static fetchUsers(): Promise<AxiosResponse<IUser[]>> {
-    return $api.get<IUser[]>('/users');
+    return $api.get<IUser[]>('/all-users');
   }
 
   static async logged(): Promise<any> {

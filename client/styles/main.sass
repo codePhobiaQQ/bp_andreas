@@ -1,5 +1,5 @@
 @import "./mixins/_mixins.sass"
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap')
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400600700&display=swap')
 
 $headHeight: 70px
 
@@ -945,8 +945,49 @@ footer
   min-width: 300px
   padding: 30px
   //background-color: lighten(#000, 60)
-  border-radius: 5px
+  border-radius: 7px
   display: flex
   align-items: center
   justify-content: center
+
+.AllUsers
+  padding: 50px
+  .responsive-table
+    li
+      border-radius: 3px
+      padding: 25px 30px
+      display: flex
+      justify-content: space-between
+      margin-bottom: 25px
+
+    .table-header
+      background-color: #95A5A6
+      font-size: 14px
+      letter-spacing: 0.03em
+    .table-row
+      background-color: #ffffff
+      box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.1)
+    .col
+      flex-basis: (100% / 6)
+
+
+
+
+  //@media all and (max-width: 767px)
+  //  .table-header
+  //    display: none
+  //  .table-row
+  //    li
+  //      display: block
+  //    .col
+  //      flex-basis: 100%
+  //    .col
+  //      display: flex
+  //      padding: 10px 0
+  //      &:before
+  //        color: #6C7A89
+  //        padding-right: 10px
+  //        content: attr(data-label)
+  //        flex-basis: 50%
+  //        text-align: right
 

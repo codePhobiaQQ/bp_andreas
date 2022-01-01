@@ -30,7 +30,7 @@ const Index: NextPage<HomeProps> = ({ videos}) => {
 
 export default Index;
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const videos: IVideo[] = await VideoServices.getAll() || [];
   return {
     props: { videos },

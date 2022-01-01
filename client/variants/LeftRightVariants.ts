@@ -97,11 +97,12 @@ export default class LeftRightVariants {
     hidden: {
       opacity: 0,
       pointerEvents: "none",
+
     },
     visible: {
       opacity: 1,
       pointerEvents: "auto",
-      backgroundColor: "red",
+      backgroundColor: "#0f0f0f"
     }
   }
 

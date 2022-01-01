@@ -17,10 +17,9 @@ const initialState: appState = {
   errorMessage: "",
 }
 
-export const errorTest = createAsyncThunk(
-  'app/test-error',
-  async (message, thunkAPI) => {
-    console.log(message);
+const errorAction = createAsyncThunk(
+  'error/create-error',
+  async (userId, thunkAPI) => {
   }
 )
 
@@ -41,7 +40,9 @@ export const appReducer = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(errorTest.fulfilled, (state, action) => {})
+    builder.addCase(errorAction.fulfilled, (state, action) => {
+      console.log()
+    })
   }
 })
 export const { setLoading, showError, hideError } = appReducer.actions
