@@ -28,8 +28,8 @@ export class TokenService {
       banReason: generateTokenDto.banReason,
     };
     const accessToken = this.jwtService.sign(payload, {
-      secret: process.env.SECRET_ACCESS_TOEKN,
-      expiresIn: '2h',
+      secret: process.env.SECRET_ACCESS_TOKEN,
+      expiresIn: '24h',
     });
     return {
       accessToken,
@@ -38,12 +38,10 @@ export class TokenService {
 
   validateAccessToken(token: string): UserDtoToClient {
     try {
-      const userData = this.jwtService.verify(token, {
-        secret: process.env.SECRET_ACCESS_TOEKN,
-      });
-      const userToClient = new UserDtoToClient(userData);
-      return userToClient;
+      const userData = this.jwtService.verify(token, {secret: process.env.SECRET_ACCESS_TOKEN});
+      return new UserDtoToClient(userData);
     } catch (e) {
+      console.log(e)
       throw new UnauthorizedException('Пользователь не авторизирован');
     }
   }

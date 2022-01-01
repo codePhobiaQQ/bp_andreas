@@ -11,10 +11,10 @@ interface HomeProps {
   videos: IVideo[];
 }
 
-const Index: NextPage<HomeProps> = ({ videos}) => {
+const Index: NextPage<HomeProps> = ({ videos }: HomeProps) => {
   const [activeFilter, setActiveFilter] = useState(1);
   useEffect(() => {
-    // console.log("videos", videos);
+    console.log("videos", videos);
   }, []);
 
   return (
@@ -31,8 +31,15 @@ const Index: NextPage<HomeProps> = ({ videos}) => {
 export default Index;
 
 export async function getStaticProps() {
-  const videos: IVideo[] = await VideoServices.getAll() || [];
-  return {
-    props: { videos },
-  };
+  try {
+    const videos: IVideo[] = await VideoServices.getAll() || [];
+    return {
+      props: { videos },
+    };
+  } catch (e) {
+    console.log(e.message);
+    return {
+      props: { videos: [] as IVideo[] }
+    }
+  }
 }

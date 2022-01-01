@@ -14,6 +14,7 @@ import useTypedSelector from "../hooks/useTypedSelector";
 import LoaderPage from "../components/LoaderPage";
 import { useRouter } from "next/router";
 import Error from "../hoc/Error";
+import {AnimatePresence} from "framer-motion";
 // import 'swiper/css';
 // import 'swiper/css/effect-fade';
 
@@ -26,20 +27,25 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     if (localStorage.getItem("token")) {
       dispatch(isLogged());
     } else {
-      // route.push("/");
-      dispatch(setLoading(false));
+      setTimeout(() => {
+        dispatch(setLoading(false));
+      }, 2000)
     }
   }, []);
 
   if (isLoading) {
-    return <LoaderPage />;
+    return (
+      <AnimatePresence>
+        <LoaderPage />
+      </AnimatePresence>
+    );
   }
 
   return (
-      <Error>
-        <Component {...pageProps} />
-      </Error>
-    );
+    <Error>
+      <Component {...pageProps} />
+    </Error>
+  );
 };
 
 // const makeStore = () => store;

@@ -25,7 +25,6 @@ let UserController = class UserController {
         return this.userService.viewAll();
     }
     logged(headers) {
-        console.log(headers.token);
         return this.userService.logged(headers.token);
     }
     ban(banUserDto) {

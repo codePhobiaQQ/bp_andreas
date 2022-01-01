@@ -13,11 +13,10 @@ interface IHeader {
 }
 
 const MainHeader = (props: IHeader) => {
-  const { isAuth } = useTypedSelector((state) => state.user);
+  const { isAuth, isAdmin } = useTypedSelector((state) => state.user);
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    console.log("logout");
     dispatch(Logout());
   };
 
@@ -42,7 +41,7 @@ const MainHeader = (props: IHeader) => {
           </div>
           <ul className="header__header-links">
             <li>
-              <a href="#TestSection">Test</a>
+                <a href="#test">Test</a>
             </li>
             <li>
               <a href="#AboutSection">About</a>
@@ -61,6 +60,12 @@ const MainHeader = (props: IHeader) => {
               </button>
             ) : (
               <>
+                {isAdmin
+                  ? <Link href="/users">
+                    <a className="header__log-in">Users</a>
+                  </Link>
+                  : null
+                }
                 <Link href="/home">
                   <a className="header__log-in">Home</a>
                 </Link>

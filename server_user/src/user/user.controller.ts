@@ -3,6 +3,7 @@ import { User } from './user.entity';
 import { UserService } from './user.service';
 import {BanUserDto, GetUserDto, UnbanUserDto} from "./dto/create-user.dto";
 import {FileInterceptor} from "@nestjs/platform-express";
+import {UserDtoToClient} from "../auth/dto/login-user.dto";
 
 @Controller('user')
 export class UserController {
@@ -14,8 +15,7 @@ export class UserController {
   }
 
   @Post('logged')
-  logged(@Headers() headers): Promise<any> {
-    console.log(headers.token)
+  logged(@Headers() headers): Promise<UserDtoToClient> {
     return this.userService.logged(headers.token);
   }
 

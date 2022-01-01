@@ -1,32 +1,39 @@
 import { IUser } from "../../models/IUser";
 import { v4 as uuidv4 } from 'uuid';
+import {cloneNode} from "@babel/types";
 
 interface UserHomeI {
   users: IUser[];
 }
 
 const UserHome = ({users}: UserHomeI) => {
+  const openHandler = (index: number) => {
+
+  }
+
   return (
     <div className="AllUsers">
-
-
       <ul className="responsive-table">
         <li className="table-header">
-          <div className="col">Id</div>
+          <div className="col-1 col">Id</div>
           <div className="col">Name</div>
           <div className="col">Email</div>
           <div className="col">IsActive</div>
           <div className="col">Banned</div>
           <div className="col">BanReason</div>
+          <div className="col">ResetLink</div>
+          <div className="col">ConfirmedLink</div>
         </li>
         {users.map((user, index) => (
           <li className="table-row" key={uuidv4() + index}>
-            <div className="col" data-label="Id">{user.id}</div>
-            <div className="col" data-label="Name">{user.name}</div>
-            <div className="col" data-label="Amount">{user.email}</div>
-            <div className="col" data-label="Status">{user.isActive ? "Yes" : "No"}</div>
-            <div className="col" data-label="Status">{user.banned ? "Yes" : "No"}</div>
-            <div className="col" data-label="Status">{user.banReason}</div>
+            <div className="col-1">{user.id}</div>
+            <div className="col">{user.name}</div>
+            <div className="col">{user.email}</div>
+            <div className="col">{user.isActive ? "Yes" : "No"}</div>
+            <div className="col">{user.banned ? "Yes" : "No"}</div>
+            <div className="col">{user.banReason}</div>
+            <div className="col">{user.resetLink}</div>
+            <div className="col">{user.confirmLink}</div>
           </li>
         ))}
       </ul>
