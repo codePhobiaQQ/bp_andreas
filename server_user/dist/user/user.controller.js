@@ -16,6 +16,7 @@ exports.UserController = void 0;
 const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const create_user_dto_1 = require("./dto/create-user.dto");
+const platform_express_1 = require("@nestjs/platform-express");
 let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
@@ -36,6 +37,9 @@ let UserController = class UserController {
     getById(getUserDto) {
         console.log(getUserDto.id);
         return this.userService.getUserById(getUserDto.id);
+    }
+    avatar(avatar) {
+        return this.userService.avatar(avatar);
     }
 };
 __decorate([
@@ -72,6 +76,14 @@ __decorate([
     __metadata("design:paramtypes", [create_user_dto_1.GetUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "getById", null);
+__decorate([
+    common_1.Post('avatar'),
+    common_1.UseInterceptors(platform_express_1.FileInterceptor('avatar')),
+    __param(0, common_1.UploadedFile()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], UserController.prototype, "avatar", null);
 UserController = __decorate([
     common_1.Controller('user'),
     __metadata("design:paramtypes", [user_service_1.UserService])

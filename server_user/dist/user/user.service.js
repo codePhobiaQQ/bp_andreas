@@ -24,12 +24,14 @@ const token_service_1 = require("../token/token.service");
 const role_service_1 = require("../role/role.service");
 const common_2 = require("@nestjs/common");
 const common_3 = require("@nestjs/common");
+const files_service_1 = require("../files/files.service");
 let UserService = class UserService {
-    constructor(usersRepository, roleRepository, tokenService, roleService) {
+    constructor(usersRepository, roleRepository, tokenService, roleService, fileService) {
         this.usersRepository = usersRepository;
         this.roleRepository = roleRepository;
         this.tokenService = tokenService;
         this.roleService = roleService;
+        this.fileService = fileService;
     }
     async create(userDto) {
         const hashPassword = await bcrypt.hash(userDto.password, 3);
@@ -91,6 +93,9 @@ let UserService = class UserService {
         }
         return user;
     }
+    async avatar(avatar) {
+        return this.fileService.createFile(avatar);
+    }
 };
 UserService = __decorate([
     common_1.Injectable(),
@@ -100,7 +105,8 @@ UserService = __decorate([
     __metadata("design:paramtypes", [typeorm_2.Repository,
         typeorm_2.Repository,
         token_service_1.TokenService,
-        role_service_1.RoleService])
+        role_service_1.RoleService,
+        files_service_1.FilesService])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

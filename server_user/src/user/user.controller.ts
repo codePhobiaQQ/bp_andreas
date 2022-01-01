@@ -1,7 +1,8 @@
-import {Controller, Get, Param, Post, UseGuards, Headers, Body} from '@nestjs/common';
+import {Controller, Get, Param, UploadedFile, UseInterceptors, Post, UseGuards, Headers, Body} from '@nestjs/common';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 import {BanUserDto, GetUserDto, UnbanUserDto} from "./dto/create-user.dto";
+import {FileInterceptor} from "@nestjs/platform-express";
 
 @Controller('user')
 export class UserController {
@@ -32,5 +33,11 @@ export class UserController {
   getById(@Param() getUserDto: GetUserDto): Promise<User> {
     console.log(getUserDto.id);
     return this.userService.getUserById(getUserDto.id);
+  }
+
+  @Post('avatar')
+  @UseInterceptors(FileInterceptor('avatar'))
+  avatar(@UploadedFile() avatar) {
+    return this.userService.avatar(avatar);
   }
 }

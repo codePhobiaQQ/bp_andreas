@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import LeftRightVariants from "../../variants/LeftRightVariants";
-import { Container } from "reactstrap"
-import andreasPhoto from "../../public/assets/img/auth-img.png";
+import { Container } from "reactstrap";
 // import { Swiper, SwiperSlide } from 'swiper/react';
 
 export default function TeachersSection() {
@@ -12,10 +11,6 @@ export default function TeachersSection() {
       });
     const variants = new LeftRightVariants(0.7, 0.7);
     const wrapperVariant = variants.wrapperVariant;
-    const mainVariantWrapper = variants.mainVariantWrapper;
-    const mainVariantChildren = variants.mainVariantChildren;
-    const rightAppear = variants.textVariantRight;
-
 
     return (
         <motion.section 
@@ -29,20 +24,15 @@ export default function TeachersSection() {
             <span>You know these guys</span>
             <h2>Featured teachers</h2>
             <Container>
-            {/*<Swiper*/}
-            {/*    className="teachersSlider"*/}
-            {/*    slidesPerView={1}*/}
-            {/*>*/}
-            {/*    <SwiperSlide>*/}
-            {/*        <img src={andreasPhoto.src} alt="teacher" />*/}
-            {/*    </SwiperSlide>*/}
-            {/*    <SwiperSlide>*/}
-            {/*        <img src={andreasPhoto.src} alt="teacher" />*/}
-            {/*    </SwiperSlide>*/}
-            {/*    <SwiperSlide>*/}
-            {/*        <img src={andreasPhoto.src} alt="teacher" />*/}
-            {/*    </SwiperSlide>*/}
-            {/*</Swiper>*/}
+                {/*<Swiper*/}
+                {/*  spaceBetween={50}*/}
+                {/*  slidesPerView={1}*/}
+                {/*  onSlideChange={() => console.log('slide change')}*/}
+                {/*  onSwiper={(swiper) => console.log(swiper)}*/}
+                {/*>*/}
+                {/*    <SwiperSlide>Slide 1</SwiperSlide>*/}
+                {/*    <SwiperSlide>Slide 2</SwiperSlide>*/}
+                {/*</Swiper>*/}
             </Container>
         </motion.section>
     )

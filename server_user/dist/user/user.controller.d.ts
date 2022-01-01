@@ -9,4 +9,5 @@ export declare class UserController {
     ban(banUserDto: BanUserDto): Promise<User>;
     unban(unbanUserDto: UnbanUserDto): Promise<User>;
     getById(getUserDto: GetUserDto): Promise<User>;
+    avatar(avatar: any): Promise<string>;
 }

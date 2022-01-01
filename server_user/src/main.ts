@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as cookieParser from 'cookie-parser';
 import * as express from 'express';
+import {ValidationPipe} from "./pipes/validation.pipe";
 
 async function start() {
   const app = await NestFactory.create(AppModule, { cors: true });
@@ -12,6 +13,7 @@ async function start() {
     credentials: true,
   });
   app.use(cookieParser());
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 5000, () => {
     console.log(`server is working on PORT = ${process.env.PORT}`);
   });

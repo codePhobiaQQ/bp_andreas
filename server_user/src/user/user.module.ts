@@ -6,6 +6,7 @@ import { User } from './user.entity';
 import { Role } from '../role/role.entity';
 import { RoleModule } from '../role/role.module';
 import { TokenModule } from 'src/token/token.module';
+import {FilesModule} from "../files/files.module";
 
 @Module({
   controllers: [UserController],
@@ -13,6 +14,7 @@ import { TokenModule } from 'src/token/token.module';
   imports: [
     TypeOrmModule.forFeature([User, Role]),
     TokenModule,
+    FilesModule,
     forwardRef(() => RoleModule),
   ],
   exports: [UserService],

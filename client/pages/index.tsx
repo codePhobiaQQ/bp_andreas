@@ -7,7 +7,6 @@ import { Container } from "reactstrap";
 import { motion } from "framer-motion";
 import Tilt from 'react-parallax-tilt';
 import LeftRightVariants from "./../variants/LeftRightVariants";
-import { useInView } from "react-intersection-observer";
 import TakeTestSection from "../components/sections/TakeTestSection";
 import HowWorkSection from "../components/sections/HowWorkSection";
 import AndNumbersSection from "../components/sections/AndNumbersSection";

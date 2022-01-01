@@ -15,6 +15,7 @@ const user_entity_1 = require("./user.entity");
 const role_entity_1 = require("../role/role.entity");
 const role_module_1 = require("../role/role.module");
 const token_module_1 = require("../token/token.module");
+const files_module_1 = require("../files/files.module");
 let UserModule = class UserModule {
 };
 UserModule = __decorate([
@@ -24,6 +25,7 @@ UserModule = __decorate([
         imports: [
             typeorm_1.TypeOrmModule.forFeature([user_entity_1.User, role_entity_1.Role]),
             token_module_1.TokenModule,
+            files_module_1.FilesModule,
             common_1.forwardRef(() => role_module_1.RoleModule),
         ],
         exports: [user_service_1.UserService],

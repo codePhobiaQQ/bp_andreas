@@ -1,16 +1,17 @@
 import {BadRequestException, HttpException, Injectable, NotFoundException} from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import {InjectRepository} from '@nestjs/typeorm';
+import {Repository} from 'typeorm';
 import {BanUserDto, CreateUserDto, UnbanUserDto} from './dto/create-user.dto';
-import { User } from './user.entity';
+import {User} from './user.entity';
 import * as bcrypt from 'bcrypt';
-import { Role } from 'src/role/role.entity';
-import { GiveRoleDto } from 'src/user/dto/give-role.dto';
-import { TokenService } from "../token/token.service";
-import { RoleService } from "../role/role.service";
-import { Inject } from '@nestjs/common';
-import { forwardRef } from '@nestjs/common';
+import {Role} from 'src/role/role.entity';
+import {GiveRoleDto} from 'src/user/dto/give-role.dto';
+import {TokenService} from "../token/token.service";
+import {RoleService} from "../role/role.service";
+import {Inject} from '@nestjs/common';
+import {forwardRef} from '@nestjs/common';
 import {UserDtoToClient} from "../auth/dto/login-user.dto";
+import {FilesService} from 'src/files/files.service';
 
 @Injectable()
 export class UserService {
@@ -20,7 +21,9 @@ export class UserService {
     private tokenService: TokenService,
     @Inject(forwardRef(() => RoleService))
     private roleService: RoleService,
-  ) {}
+    private fileService: FilesService
+  ) {
+  }
 
   async create(userDto: CreateUserDto): Promise<User> {
     //Шифруем пароль
@@ -62,10 +65,10 @@ export class UserService {
   }
 
   async viewAll(): Promise<User[]> {
-    return await this.usersRepository.find({ relations: ['roles'] });
+    return await this.usersRepository.find({relations: ['roles']});
   }
 
-  async ban({ id, reason }: BanUserDto): Promise<User> {
+  async ban({id, reason}: BanUserDto): Promise<User> {
     const user = await this.getUserById(id);
     if (!user) {
       throw new NotFoundException("The user with this id was not found");
@@ -76,7 +79,7 @@ export class UserService {
     return user;
   }
 
-  async unban({ id }: UnbanUserDto): Promise<User> {
+  async unban({id}: UnbanUserDto): Promise<User> {
     const user = await this.getUserById(id);
     if (!user) {
       throw new NotFoundException("The user with this id was not found");
@@ -89,12 +92,16 @@ export class UserService {
 
   async getUserById(id: number): Promise<User> {
     const user = await this.usersRepository.findOne({
-      where: { id },
+      where: {id},
       relations: ['roles'],
     });
     if (!user) {
       throw new NotFoundException("The user with this id was not found");
     }
     return user;
+  }
+
+  async avatar(avatar: any) {
+    return this.fileService.createFile(avatar);
   }
 }

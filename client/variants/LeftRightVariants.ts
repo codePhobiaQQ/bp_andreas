@@ -92,6 +92,19 @@ export default class LeftRightVariants {
       }
     },
   }
+
+  errorVariant = {
+    hidden: {
+      opacity: 0,
+      pointerEvents: "none",
+    },
+    visible: {
+      opacity: 1,
+      pointerEvents: "auto",
+      backgroundColor: "red",
+    }
+  }
+
   constructor(duration: number, interval: number) {
     this.wrapperVariant.visible.transition.staggerChildren = duration;
 
