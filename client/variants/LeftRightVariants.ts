@@ -24,7 +24,7 @@ export default class LeftRightVariants {
   mainVariantChildren = {
     hidden: {
       opacity: 0,
-      y: -35,
+      y: -15,
     },
     visible: {
       opacity: 1,

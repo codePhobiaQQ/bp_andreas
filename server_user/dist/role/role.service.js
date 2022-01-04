@@ -47,7 +47,7 @@ let RoleService = class RoleService {
         }
     }
     async add({ userId, roleName }) {
-        const role = await this.getByValue('admin');
+        const role = await this.getByValue(roleName);
         if (!role) {
             throw new common_1.NotFoundException("Such a role was not found");
         }
@@ -69,7 +69,7 @@ let RoleService = class RoleService {
         return user;
     }
     async remove({ userId, roleName }) {
-        const role = await this.getByValue('admin');
+        const role = await this.getByValue(roleName);
         if (!role) {
             throw new common_1.NotFoundException("Such a role was not found");
         }

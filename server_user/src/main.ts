@@ -13,7 +13,6 @@ async function start() {
     credentials: true,
   });
   app.use(cookieParser());
-  app.useGlobalPipes(new ValidationPipe());
   await app.listen(process.env.PORT || 5000, () => {
     console.log(`server is working on PORT = ${process.env.PORT}`);
   });

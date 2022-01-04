@@ -27,9 +27,9 @@ export const isLogged = createAsyncThunk("logged", async (_, thunkAPI) => {
     const response = await UserServices.logged();
     const user: IUser = response.data;
     thunkAPI.dispatch(setUser(user));
-    thunkAPI.dispatch(setLoading(false));
     if (isAdmin(user.roles)) thunkAPI.dispatch(setAdmin(true));
     if (isSuperAdmin(user.roles)) thunkAPI.dispatch(setSuperAdmin(true));
+    thunkAPI.dispatch(setLoading(false));
     return user;
   } catch (e) {
     console.log(e.message);

@@ -955,15 +955,57 @@ footer
   align-items: center
   justify-content: center
 
+.userActions
+  position: fixed
+  height: 100vh
+  width: 100vw
+  z-index: 100
+  background-color: rgba(0, 0, 0, .8)
+  display: flex
+  align-items: center
+  justify-content: center
+  .close
+    position: absolute
+    top: 50px
+    right: 50px
+    width: 30px
+    height: 30px
+    stroke: #fff
+    cursor: pointer
+    transition: transform .3s ease
+    &:hover
+      transform: scale(1.1)
+  .userActionsIntro
+    display: flex
+    flex-direction: column
+    button
+      margin-bottom: 20px
+      &:last-child
+        margin-bottom: 0
+    .banReason
+      align-items: center
+      display: flex
+      margin-bottom: 25px
+      label
+        margin-right: 10px
+        color: #fff
+
+
 .AllUsers
   padding: 50px
+  .back
+    position: absolute
+    top: 50px
+    left: 50px
   .responsive-table
+    margin-top: 50px
     li
       border-radius: 3px
       padding: 15px 15px
       display: flex
       justify-content: space-between
       margin-bottom: 25px
+      cursor: pointer
 
     .table-header
       background-color: #93a7ef

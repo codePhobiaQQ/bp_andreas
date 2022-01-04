@@ -1,6 +1,7 @@
 import { IUser } from "../../models/IUser";
 import { v4 as uuidv4 } from 'uuid';
 import {cloneNode} from "@babel/types";
+import Link from "next/link";
 
 interface UserHomeI {
   users: IUser[];

@@ -15,7 +15,7 @@ const BlogPage = ({ blog }: BlogPageInterface) => {
     <LkDashboardGrid>
       <main className={"admin__main blogPage"}>
         <div className="descriptionWrapper">
-          <img src={`${back_url}${blog.image[0].url}`} alt="blog"/>
+          {blog.image ? <img src={`${back_url}${blog.image[0].url}`} alt="blog"/> : null}
           <div className="info">
             <span className={"title"}>{blog.title}</span>
             <span className={"author"}>{blog.title}</span>
@@ -35,10 +35,6 @@ export const getServerSideProps: GetServerSideProps = async (
   context
 ): Promise<any> => {
   const blog: IBlog = await BlogServices.getOne(Number(context.params?.id));
-  console.log(blog)
-  if (!blog) {
-    return { props: {} };
-  }
   return {
     props: { blog },
   };

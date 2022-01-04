@@ -1,35 +1,32 @@
-import $api from "../http";
-import axios, { AxiosResponse } from "axios";
 import { IVideo } from "../models/IVideo";
-import {back_url} from "../vars";
+import {back_strapi_url} from "../vars";
 
 export default class VideoServices {
 
   static async getAll(): Promise<IVideo[]> {
-    try {
-      const videos = await fetch(`${back_url}/videos`).then(
-        (res) => res.json()
-      );
-      return videos;
-    } catch (e) {
-      console.log(e.message);
-      return [];
+    let result: IVideo[] = [];
+    const videos = await fetch(`${back_strapi_url}/videos`).then(
+      (res) => res.json()
+    ).catch(e => {
+      return [] as IVideo[];
+    });
+    if (!videos.statusCode) {
+      result = videos;
     }
+    return result;
   }
 
   static async getOne(id: number | undefined): Promise<IVideo> {
-    try {
-      if (id === undefined) {
-        return {} as IVideo;
-      }
-      const response = await axios.get(
-        `${back_url}/videos/${id}`
-      );
-      const videos = response.data;
-      return videos;
-    } catch (e) {
-      console.log(e.message);
-      return {} as IVideo;
+    let result = {} as IVideo
+    if (id === undefined) {
+      return result;
     }
+    const video = await fetch(
+      `${back_strapi_url}/videos/${id}`
+    ).then(res => res.json());
+    if (!video.statusCode) {
+      result = video.data;
+    }
+    return result;
   }
 }

@@ -47,7 +47,7 @@ export class RoleService {
   }
 
   async add({ userId, roleName }: AddRoleDto): Promise<User> {
-    const role = await this.getByValue('admin');
+    const role = await this.getByValue(roleName);
     if (!role) {
       throw new NotFoundException("Such a role was not found");
     }
@@ -70,7 +70,7 @@ export class RoleService {
   }
 
   async remove({ userId, roleName }: AddRoleDto): Promise<User> {
-    const role = await this.getByValue('admin');
+    const role = await this.getByValue(roleName);
     if (!role) {
       throw new NotFoundException("Such a role was not found");
     }
@@ -79,7 +79,6 @@ export class RoleService {
       throw new NotFoundException("The user with this id was not found");
     }
     let userHasRole = 0;
-
 
     const finalRoles: Role[] = [];
     user.roles.reduce((memo, userRole) => {

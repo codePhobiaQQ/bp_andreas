@@ -1,10 +1,11 @@
-import {Body, Controller, Get, Post, Req, Res} from '@nestjs/common';
+import {Body, Controller, Get, Post, Req, Res, UsePipes} from '@nestjs/common';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { AuthService } from './auth.service';
 import { User } from '../user/user.entity';
 import { TokenService } from '../token/token.service';
 import { Request, Response } from 'express';
 import {RegisterUserI} from "./dto/register-user.dto";
+import {ValidationPipe} from "../pipes/validation.pipe";
 
 interface IRegister {
   user: User;
@@ -18,6 +19,7 @@ export class AuthController {
     private tokenService: TokenService,
   ) {}
 
+  @UsePipes(ValidationPipe)
   @Post('registration')
   async registration(
     @Body() userDto: CreateUserDto,

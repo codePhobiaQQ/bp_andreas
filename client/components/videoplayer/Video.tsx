@@ -1,7 +1,7 @@
 import "./Video";
 import ReactPlayer from "react-player";
 import { IVideo } from "../../models/IVideo";
-import {back_url} from "../../vars";
+import {back_url, back_strapi_url} from "../../vars";
 import {log} from "util";
 
 interface videoProps {
@@ -12,11 +12,11 @@ const Video = ({ video }: videoProps) => {
   const videoJsOptions = {
     autoPlay: true,
     controls: true,
-    url: `${back_url}${video.video[0].url}`,
-    light: `${back_url}${video.bigImage[0].url}`,
+    url: video?.video ? `${back_strapi_url}${video.video[0].url}` : '',
+    light: video?.bigImage ? `${back_strapi_url}${video.bigImage[0].url}` : '',
     sources: [
       {
-        src: `${back_url}${video.video[0].url}`,
+        src: video?.video ? `${back_strapi_url}${video.video[0].url}` : '',
         type: "video/mp4",
       },
     ],
@@ -32,16 +32,16 @@ const Video = ({ video }: videoProps) => {
         </div>
         <div className="videoInfo">
           <div className="videoInfoHelp">
-            {video.level?.level ? <span className="level">{video.level?.level}</span> : null}
-            {video.time ? <span className="time">{video.time} min</span> : null}
+            {video?.level ? <span className="level">{video.level?.level}</span> : null}
+            {video?.time ? <span className="time">{video.time} min</span> : null}
           </div>
-          <h3>{video.title}</h3>
-          {video.price ?<div className="price">
+          <h3>{video ? video.title : null}</h3>
+          {video?.price ? <div className="price">
             <span className="numbs">${video.price}</span>
             <span className="separator">/</span>
             <span className="letters">for this video</span>
           </div> : null}
-          {video.description ? <p>{video.description}</p> : null}
+          {video?.description ? <p>{video.description}</p> : null}
           <div className="buyButton">
             Buy now
           </div>

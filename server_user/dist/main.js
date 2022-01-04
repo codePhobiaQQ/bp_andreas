@@ -4,7 +4,6 @@ const core_1 = require("@nestjs/core");
 const app_module_1 = require("./app.module");
 const cookieParser = require("cookie-parser");
 const express = require("express");
-const validation_pipe_1 = require("./pipes/validation.pipe");
 async function start() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule, { cors: true });
     app.use(express.urlencoded({ extended: true, limit: '5mb' }));
@@ -14,7 +13,6 @@ async function start() {
         credentials: true,
     });
     app.use(cookieParser());
-    app.useGlobalPipes(new validation_pipe_1.ValidationPipe());
     await app.listen(process.env.PORT || 5000, () => {
         console.log(`server is working on PORT = ${process.env.PORT}`);
     });

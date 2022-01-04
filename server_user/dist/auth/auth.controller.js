@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const create_user_dto_1 = require("../user/dto/create-user.dto");
 const auth_service_1 = require("./auth.service");
 const token_service_1 = require("../token/token.service");
+const validation_pipe_1 = require("../pipes/validation.pipe");
 let AuthController = class AuthController {
     constructor(authService, tokenService) {
         this.authService = authService;
@@ -35,6 +36,7 @@ let AuthController = class AuthController {
     }
 };
 __decorate([
+    common_1.UsePipes(validation_pipe_1.ValidationPipe),
     common_1.Post('registration'),
     __param(0, common_1.Body()),
     __metadata("design:type", Function),

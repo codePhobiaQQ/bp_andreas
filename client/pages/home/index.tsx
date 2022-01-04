@@ -6,17 +6,14 @@ import VideoServices from "../../services/video.services";
 import { IVideo } from "../../models/IVideo";
 import Card from "../../components/Card";
 import LkDashboardGrid from "../../hoc/LkDashboardGrid";
+import {back_url} from "../../vars";
 
 interface HomeProps {
-  videos: IVideo[];
+  videos: IVideo[] | [];
 }
 
 const Index: NextPage<HomeProps> = ({ videos }: HomeProps) => {
   const [activeFilter, setActiveFilter] = useState(1);
-  useEffect(() => {
-    console.log("videos", videos);
-  }, []);
-
   return (
     <LkDashboardGrid>
       <main className="admin__main video__main">
@@ -31,15 +28,8 @@ const Index: NextPage<HomeProps> = ({ videos }: HomeProps) => {
 export default Index;
 
 export async function getStaticProps() {
-  try {
-    const videos: IVideo[] = await VideoServices.getAll() || [];
-    return {
-      props: { videos },
-    };
-  } catch (e) {
-    console.log(e.message);
-    return {
-      props: { videos: [] as IVideo[] }
-    }
-  }
+  const videos: IVideo[] = await VideoServices.getAll() || [];
+  return {
+    props: { videos },
+  };
 }

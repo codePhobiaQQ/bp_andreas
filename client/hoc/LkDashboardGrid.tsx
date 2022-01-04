@@ -24,11 +24,11 @@ const LkDashboardGrid = ({ children }: IDashboard) => {
   const user = useTypedSelector((state) => state.user.user);
   const isLoading = useTypedSelector((state) => state.app.isLoading);
 
-  // useEffect(() => {
-  //   if (!isAuth && !isLoading) {
-  //     router.push("/");
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (!isAuth && !isLoading) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <>
