@@ -1,0 +1,127 @@
+@import "./mixins/_mixins.sass"
+
+.testSection
+  height: 100vh
+  min-height: 800px
+  background-color: #E2E5F2
+  @include centerMix
+  .question
+    padding: 50px
+    display: flex
+    flex-direction: column
+    height: 650px
+    width: 920px
+    background: #FFFFFF
+    box-shadow: 0px 10px 40px 2px rgba(3, 41, 177, 0.08), 34.9453px 64.8984px 87.3633px rgba(7, 21, 72, 0.03), 0px 2.49609px 7.48828px rgba(31, 63, 174, 0.06), 0px 0px 1.24805px rgba(31, 63, 174, 0.06)
+    border-radius: 20px
+    .number
+      color: #9198B0
+      font-size: 14px
+      margin-bottom: 15px
+    .title
+      font-size: 33px
+      color: #0D1D52
+      font-weight: 600
+      margin-bottom: 60px
+    .variants
+      .variant
+        margin-bottom: 25px
+        display: flex
+        &:last-child
+          margin-bottom: 0
+        span
+          font-size: 18px
+          margin-left: 10px
+          max-width: 580px
+    .bottomSection
+      display: flex
+      margin-top: auto
+      align-items: center
+      width: 100%
+      button
+        background: #5779F0
+        width: 90px
+        height: 50px
+        color: #fff
+        font-weight: 600
+        box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+        border-radius: 100px
+        margin-right: 20px
+        @include centerMix
+      .skip, .prev
+        opacity: .7
+        font-size: 16px
+        font-weight: 500
+        color: #9CA6CB
+        cursor: pointer
+      .prev
+        color: #5779F0
+        margin-left: auto
+        margin-right: 10px
+
+
+
+
+//Checkbox
+
+.label-cbx
+  user-select: none
+  cursor: pointer
+  margin-bottom: 0
+  input:checked
+    & + .checkbox
+      border-color: #5779F0
+      svg
+        path
+          fill: #5779F0
+        polyline
+          stroke-dashoffset: 0
+  &:hover
+    .checkbox
+      svg
+        path
+          stroke-dashoffset: 0
+
+  .checkbox
+    position: relative
+    float: left
+    margin-right: 8px
+    width: 30px
+    height: 30px
+    border: 2px solid #C8CCD4
+    border-radius: 5px
+    svg
+      position: absolute
+      top: -2px
+      left: -2px
+      width: 30px
+      height: 30px
+      path
+        fill: none
+        stroke: #5779F0
+        stroke-width: 2
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-dasharray: 71px
+        stroke-dashoffset: 71px
+        transition: all .6s ease
+      polyline
+        fill: none
+        stroke: #FFF
+        stroke-width: 2
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-dasharray: 18px
+        stroke-dashoffset: 18px
+        transition: all .3s ease
+
+  > span
+    pointer-events: none
+    vertical-align: middle
+
+.invisible
+  position: absolute
+  z-index: -1
+  width: 0
+  height: 0
+  opacity: 0

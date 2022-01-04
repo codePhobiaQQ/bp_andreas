@@ -1,15 +1,15 @@
 import React, {useEffect} from "react";
-import LkDashboardGrid from "../hoc/LkDashboardGrid";
-import { IBlog } from "../models/IBlog";
-import BlogServices from "../services/blog.services";
+import LkDashboardGrid from "../../hoc/LkDashboardGrid";
+import { IBlog } from "../../models/IBlog";
+import BlogServices from "../../services/blog.services";
 import {NextPage} from "next";
-import BlogEl from "../components/BlogEl"
+import BlogEl from "../../components/BlogEl"
 
 interface BlogProps {
   blogs: IBlog[];
 }
 
-const Blog: NextPage<BlogProps> = ({ blogs }) => {
+const Index: NextPage<BlogProps> = ({ blogs }) => {
   useEffect(() => {
     console.log(blogs);
   })
@@ -22,7 +22,7 @@ const Blog: NextPage<BlogProps> = ({ blogs }) => {
   </LkDashboardGrid>;
 };
 
-export default Blog;
+export default Index;
 
 export async function getServerSideProps() {
   const blogs: IBlog[] = await BlogServices.getAll() || [];

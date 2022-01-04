@@ -32,7 +32,7 @@ export default function SubscriptionSection() {
               tiltMaxAngleY={6}
             >
               <motion.div variants={fadeInBottom} className="card">
-                <div className="circle">
+                <div className="circleCard">
                   <svg
                     width="26"
                     height="44"
@@ -84,7 +84,7 @@ export default function SubscriptionSection() {
               tiltMaxAngleY={6}
             >
               <motion.div variants={fadeInBottom} className="card premium">
-                <div className="circle">
+                <div className="circleCard">
                   <svg
                     width="41"
                     height="41"

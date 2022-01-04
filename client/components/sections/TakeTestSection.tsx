@@ -3,6 +3,10 @@ import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 import LeftRightVariants from "../../variants/LeftRightVariants";
+import Circle from "../UI/Circle";
+import Pen from "../svg/Pen";
+import Music from "../svg/Music";
+import Level from "../svg/Level";
 
 export default function TakeTestSection() {
     const { ref, inView } = useInView({
@@ -24,6 +28,10 @@ export default function TakeTestSection() {
           animate={inView ? "visible" : ""}
           id="TestSection"
         >
+
+          <Circle classCircle={"littleCircleTest"} circleFirst={<Music />} />
+          <Circle classCircle={"bigCircleTest"} circleFirst={<Pen />} circleSecond={<Level />} />
+
           <Container>
             <motion.div
               className="contentWrapper"

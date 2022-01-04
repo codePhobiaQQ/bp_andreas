@@ -1,0 +1,64 @@
+.circle
+  border: 1px dashed #BAC5EA
+  border-radius: 50%
+  position: absolute
+  pointer-events: none
+  .circleInner
+    position: relative
+    height: 0
+    border: none
+    padding-top: 100%
+  .circleContent
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    background: transparent
+  .circleLegs
+    width: 40px
+    height: 40px
+    position: absolute
+    top: -20px
+    left: calc(50% - 10px)
+    background-color: #fff
+    display: flex
+    align-items: center
+    justify-content: center
+    border: 1px dashed #BAC5EA
+    box-shadow: 0px 10px 20px rgba(31, 63, 174, 0.06), 0px 2px 6px rgba(31, 63, 174, 0.06), 0px 0px 1px rgba(31, 63, 174, 0.06)
+    border-radius: 50%
+    animation: rotationAnim 5s infinite linear
+    .legs
+      height: 18px
+  .circleLegsTwo
+    right: calc(50% - 10px)
+    top: inherit
+    left: inherit
+    //top: 20px
+  &.circleFirst, &.littleCircleTest, &.bigCircleTest
+    width: 10%
+    min-width: 471px
+    top: -100px
+    left: -50px
+    animation: rotationAnim 15s infinite linear
+  &.littleCircleTest
+    width: 35%
+    right: -15%
+    top: 25%
+    left: inherit
+  &.bigCircleTest
+    left: inherit
+    width: 55%
+    right: -25%
+    top: 10%
+
+
+
+
+@keyframes rotationAnim
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+

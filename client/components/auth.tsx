@@ -10,6 +10,7 @@ import { setUser } from "../redux/slices/UserSlice";
 import AuthServices from "../services/auth.services";
 import { useRouter } from "next/router";
 import { RingLoader } from "react-spinners";
+import TestTab from "./authTabs/TestTab";
 
 interface IAuth {
   setAuthVisible: Dispatch<React.SetStateAction<boolean>>;
@@ -24,6 +25,11 @@ export interface IRegistrationTab {
   email: string;
   password: string;
   username: string;
+}
+
+export interface ITestTab {
+  username: string;
+  email: string;
 }
 
 const Auth = (props: IAuth) => {
@@ -55,7 +61,6 @@ const Auth = (props: IAuth) => {
     }
   };
 
-
   const registrationAction = async (data: IRegistrationTab) => {
     try {
       setLoadingPre(true);
@@ -64,6 +69,23 @@ const Auth = (props: IAuth) => {
       dispatch(setUser(user));
       route.push("/home");
       return user;
+    } catch (e) {
+      setTimeout(() => {
+        setLoadingPre(false);
+      }, 700);
+      console.log(e.message);
+      return e;
+    }
+  };
+
+  const testAction = async (data: ITestTab) => {
+    try {
+      setLoadingPre(true);
+      // const response = await AuthServices.registration(data.email, data.password, data.username);
+      // const user: IUser = response.data.user;
+      // dispatch(setUser(user));
+      route.push("/test");
+      // return user;
     } catch (e) {
       setTimeout(() => {
         setLoadingPre(false);
@@ -113,7 +135,9 @@ const Auth = (props: IAuth) => {
               <RegistrationTab registrationAction={registrationAction} />
             </Tab.Pane>
 
-            <Tab.Pane eventKey="Test">ahahah3</Tab.Pane>
+            <Tab.Pane eventKey="Test">
+              <TestTab testAction={testAction} />
+            </Tab.Pane>
 
           </Tab.Content>
         </Tab.Container>)}

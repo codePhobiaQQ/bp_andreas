@@ -1,8 +1,11 @@
 import "bootstrap/dist/css/bootstrap-grid.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../styles/main.sass";
+import "../styles/test.sass";
 import "../styles/admin.scss";
+import "../styles/teachers.sass";
 import "../styles/LoaderPage.css";
+import "../styles/Circles.sass";
 import type { AppProps } from "next/app";
 import React, { FC, useEffect, useState } from "react";
 import withRedux from "next-redux-wrapper";
@@ -15,8 +18,7 @@ import LoaderPage from "../components/LoaderPage";
 import { useRouter } from "next/router";
 import Error from "../hoc/Error";
 import {AnimatePresence} from "framer-motion";
-// import 'swiper/css';
-// import 'swiper/css/effect-fade';
+
 
 const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
   const dispatch = useDispatch();

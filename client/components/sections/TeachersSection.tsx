@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import LeftRightVariants from "../../variants/LeftRightVariants";
 import { Container } from "reactstrap";
-// import { Swiper, SwiperSlide } from 'swiper/react';
+import { useState } from "react";
 
 export default function TeachersSection() {
     const { ref, inView } = useInView({
@@ -11,6 +11,8 @@ export default function TeachersSection() {
       });
     const variants = new LeftRightVariants(0.7, 0.7);
     const wrapperVariant = variants.wrapperVariant;
+
+    const [activeTeacher, setTeacher] = useState<number>(0);
 
     return (
         <motion.section 
@@ -24,15 +26,9 @@ export default function TeachersSection() {
             <span>You know these guys</span>
             <h2>Featured teachers</h2>
             <Container>
-                {/*<Swiper*/}
-                {/*  spaceBetween={50}*/}
-                {/*  slidesPerView={1}*/}
-                {/*  onSlideChange={() => console.log('slide change')}*/}
-                {/*  onSwiper={(swiper) => console.log(swiper)}*/}
-                {/*>*/}
-                {/*    <SwiperSlide>Slide 1</SwiperSlide>*/}
-                {/*    <SwiperSlide>Slide 2</SwiperSlide>*/}
-                {/*</Swiper>*/}
+                <div className="TeacherPhotos">
+                    <img src="" alt="teacher"/>
+                </div>
             </Container>
         </motion.section>
     )
