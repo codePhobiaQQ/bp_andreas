@@ -10,6 +10,7 @@ import Head from 'next/head'
 interface IHeader {
   children: React.ReactNode;
   setAuthVisible: Dispatch<React.SetStateAction<boolean>>;
+  setWhatTab: Dispatch<React.SetStateAction<string>>;
 }
 
 const MainHeader = (props: IHeader) => {
@@ -19,6 +20,11 @@ const MainHeader = (props: IHeader) => {
   const logoutHandler = () => {
     dispatch(Logout());
   };
+
+  const openAuthHandler = (what: string) => {
+    props.setWhatTab(what);
+    props.setAuthVisible(true);
+  }
 
   return (
     <>
@@ -54,7 +60,7 @@ const MainHeader = (props: IHeader) => {
             {!isAuth ? (
               <button
                 className="header__log-in"
-                onClick={() => props.setAuthVisible(true)}
+                onClick={() => openAuthHandler("SingIn")}
               >
                 Log in
               </button>
@@ -75,7 +81,12 @@ const MainHeader = (props: IHeader) => {
               </>
             )}
 
-            <button className="header__try">Try for free</button>
+            <button
+              className="header__try"
+              onClick={() => openAuthHandler("Register")}
+            >
+              Try for free
+            </button>
           </div>
         </Container>
       </header>

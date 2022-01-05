@@ -2,11 +2,17 @@ import {Container} from "reactstrap";
 import {motion} from "framer-motion";
 import Tilt from "react-parallax-tilt";
 import LeftRightVariants from "../../variants/LeftRightVariants";
-import {useEffect, useRef, useState} from "react";
+import React, {Dispatch, useRef, useState} from "react";
 import Circle from "../UI/Circle";
 import Legs from "../svg/Legs";
+import Triangle from "../UI/Triangle";
 
-const MainSection = () => {
+interface IMainSection {
+  setAuthVisible: Dispatch<React.SetStateAction<boolean>>;
+  setWhatTab: Dispatch<React.SetStateAction<string>>;
+}
+
+const MainSection = ({setAuthVisible, setWhatTab}: IMainSection) => {
   const variants = new LeftRightVariants(0.7, 0.7);
   const wrapperVariant = variants.wrapperVariant;
   const photoVariant = variants.photoVariant;
@@ -16,10 +22,10 @@ const MainSection = () => {
   const [top, setTop] = useState<number>(0);
   const ref = useRef<HTMLButtonElement>(null);
 
-  // useEffect(() => {
-  //   setTop(ref.current?.offsetTop);
-  //   console.log(ref.current?.offsetTop);
-  // }, []);
+  const openAuthHandler = (what: string) => {
+    setWhatTab(what);
+    setAuthVisible(true);
+  }
 
   return (
     <motion.section
@@ -60,20 +66,20 @@ const MainSection = () => {
             className="buttonsWrapper"
             variants={mainVariantChildren}
           >
-            <button className="blueButton">Try for free</button>
+            <button
+              className="blueButton"
+              onClick={() => openAuthHandler("Register")}
+            >
+              Try for free
+            </button>
 
             <div className="videoButtonWrapper">
               <button ref={ref} className="videoButton">
-                <img
-                  src="/assets/img/play.png"
-                  alt="play"
-                  width={14}
-                  height={16}
-                />
+                <Triangle />
               </button>
               <span>
-                    Play video
-                  </span>
+                Play video
+              </span>
             </div>
           </motion.div>
         </motion.div>

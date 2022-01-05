@@ -14,6 +14,7 @@ import TestTab from "./authTabs/TestTab";
 
 interface IAuth {
   setAuthVisible: Dispatch<React.SetStateAction<boolean>>;
+  whatTab: string;
 }
 
 export interface ILoginTab {
@@ -112,7 +113,7 @@ const Auth = (props: IAuth) => {
         </p>
         {loading
           ? <RingLoader color={"#5779F0"} size={150} css={override} />
-          : (<Tab.Container id="left-tabs-example" defaultActiveKey="SingIn">
+          : (<Tab.Container id="left-tabs-example" defaultActiveKey={props.whatTab}>
             <Nav variant="pills">
               <Nav.Item>
                 <Nav.Link eventKey="SingIn">Sing in</Nav.Link>

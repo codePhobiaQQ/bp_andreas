@@ -9,24 +9,24 @@ import SubscriptionSection from "../components/sections/SubscriptionSection";
 import AboutSection from "../components/sections/AboutSection";
 import TeachersSection from "../components/sections/TeachersSection";
 import Footer from "../components/sections/Footer";
-import Legs from "../components/svg/Legs";
 import MainSection from "../components/sections/MainSection";
 
 export default function Home() {
   const [authVisible, setAuthVisible] = useState(false);
+  const [whatTap, setWhatTap] = useState<string>("SingIn");
 
   return (
-    <MainHeader setAuthVisible={setAuthVisible}>
+    <MainHeader setWhatTab={setWhatTap} setAuthVisible={setAuthVisible}>
       <CSSTransition
         in={authVisible}
         classNames="fadeIn"
         timeout={200}
         unmountOnExit
       >
-        <Auth setAuthVisible={setAuthVisible} />
+        <Auth setAuthVisible={setAuthVisible} whatTab={whatTap} />
       </CSSTransition>
 
-      <MainSection />
+      <MainSection setWhatTab={setWhatTap} setAuthVisible={setAuthVisible} />
 
       <TakeTestSection />
 
