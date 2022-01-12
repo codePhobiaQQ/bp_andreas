@@ -1,0 +1,18 @@
+@import "./mixins/mixins"
+
+.videoMpWrapper
+  height: 100vh
+  width: 100vw
+  top: 100%
+  position: fixed
+  z-index: 100
+  background-color: darken(#E2E5F2, 5)
+  @include centerMix
+  transition: all .5s ease-in-out
+  &.active
+    top: 0
+  .videoWrapper
+    width: 80%
+    height: 60%
+    max-height: 500px
+    max-width: 1000px

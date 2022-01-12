@@ -8,7 +8,7 @@ const ErrorComponent = (props: any) => {
   const isError = useTypedSelector(state => state.app.isError);
   const errorMessage = useTypedSelector(state => state.app.errorMessage);
 
-  const variants = new LeftRightVariants(0.7, 0.7);
+  const variants = new LeftRightVariants({})
   const errorVariant = variants.errorVariant;
 
   return (

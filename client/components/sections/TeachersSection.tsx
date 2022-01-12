@@ -2,7 +2,7 @@ import {motion} from "framer-motion";
 import {useInView} from "react-intersection-observer";
 import LeftRightVariants from "../../variants/LeftRightVariants";
 import {Container} from "reactstrap";
-import {useState} from "react";
+import React, {Dispatch, useState} from "react";
 import andreas from "../../public/assets/img/auth-img.png"
 import Triangle from "../UI/Triangle";
 import Facebook from "../UI/Facebook";
@@ -21,7 +21,11 @@ interface TeacherI {
   bigImg: any;
 }
 
-export default function TeachersSection() {
+interface ITeacherSection {
+  setVideoVisible: Dispatch<React.SetStateAction<boolean>>;
+}
+
+export default function TeachersSection({setVideoVisible}: ITeacherSection) {
   const [activeTeacher, setTeacher] = useState<number>(0);
   const teachers: TeacherI[] = [
     {
@@ -56,7 +60,7 @@ export default function TeachersSection() {
     },
   ]
 
-  const variants = new LeftRightVariants(0.7, 0.7);
+  const variants = new LeftRightVariants({})
   const wrapperVariant = variants.wrapperVariant;
   const fadeInBottom = variants.fadeInBottom;
 
@@ -87,7 +91,7 @@ export default function TeachersSection() {
             {teachers[activeTeacher].name}
           </h3>
           <p className="description">{teachers[activeTeacher].description}</p>
-          <div className="videoButtonWrapper">
+          <div onClick={() => {setVideoVisible(true)}} className="videoButtonWrapper">
             <button className="videoButton">
               <Triangle />
             </button>

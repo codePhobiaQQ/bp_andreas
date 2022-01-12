@@ -2,30 +2,35 @@
 
 .testSection
   height: 100vh
-  min-height: 800px
+  min-height: 530px
   background-color: #E2E5F2
   @include centerMix
   .question
-    padding: 50px
+    padding: 30px 50px
     display: flex
+    max-height: 650px
     flex-direction: column
-    height: 650px
+    height: 85vh
     width: 920px
     background: #FFFFFF
     box-shadow: 0px 10px 40px 2px rgba(3, 41, 177, 0.08), 34.9453px 64.8984px 87.3633px rgba(7, 21, 72, 0.03), 0px 2.49609px 7.48828px rgba(31, 63, 174, 0.06), 0px 0px 1.24805px rgba(31, 63, 174, 0.06)
     border-radius: 20px
+    margin: auto
     .number
       color: #9198B0
       font-size: 14px
       margin-bottom: 15px
     .title
-      font-size: 33px
+      font-size: 30px
       color: #0D1D52
       font-weight: 600
-      margin-bottom: 60px
+      padding-bottom: 30px
+      max-width: 75%
     .variants
+      margin: auto 0
+      overflow: auto
       .variant
-        margin-bottom: 25px
+        margin-bottom: 15px
         display: flex
         &:last-child
           margin-bottom: 0
@@ -36,6 +41,7 @@
     .bottomSection
       display: flex
       margin-top: auto
+      padding-top: 30px
       align-items: center
       width: 100%
       button
@@ -60,7 +66,83 @@
         margin-right: 10px
 
 
+//Radio
 
+$radioSize: 30px
+$radioBorder: #9CA6CB
+$radioActive: #5779F0
+
+.radio
+  margin: 16px 0
+  margin-left: 5px
+  display: flex
+  cursor: pointer
+  span.text
+    padding-top: 2px
+    max-width: 70%
+    display: block
+    margin-left: 25px
+    font-size: 18px
+  input
+    display: none
+    & + span.circleVar
+      height: $radioSize
+      padding-left: $radioSize
+      display: block
+      position: relative
+      &:not(:empty)
+        padding-left: $radioSize + 8
+      &:before,
+      &:after
+        content: ''
+        width: $radioSize
+        height: $radioSize
+        display: block
+        border-radius: 50%
+        left: 0
+        top: 0
+        position: absolute
+    
+      &:before
+        background: $radioBorder
+        transition: background .2s ease, transform .4s cubic-bezier(.175, .885, .32, 2)
+    
+      &:after
+        background: #fff
+        transform: scale(.78)
+        transition: transform .6s cubic-bezier(.175, .885, .32, 1.4)
+    &:checked + span
+      &:before
+        transform: scale(1.04)
+        background: $radioActive
+    
+      &:after
+        transform: scale(.4)
+        transition: transform .3s ease
+  &:hover
+    input
+      & + span
+        &:before
+          transform: scale(.92)
+        &:after
+          transform: scale(.74)
+      &:checked + span
+        &:after
+          transform: scale(.4)
+      
+    
+  
+
+
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 //Checkbox
 

@@ -9,7 +9,7 @@ export default function AboutSection() {
     threshold: 0.6,
     triggerOnce: true,
   });
-  const variants = new LeftRightVariants(0.7, 0.7);
+  const variants = new LeftRightVariants({})
   const wrapperVariant = variants.wrapperVariant;
   const mainVariantWrapper = variants.mainVariantWrapper;
   const mainVariantChildren = variants.mainVariantChildren;

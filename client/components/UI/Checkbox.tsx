@@ -1,12 +1,14 @@
 interface CheckboxI {
   id: string;
+  name?: string;
+  type?: string;
 }
 
-const Checkbox = ({id}: CheckboxI) => {
+const Checkbox = ({id, name, type = "checkbox"}: CheckboxI) => {
   return (
     <div className="cntr">
       <label htmlFor={id} className="label-cbx">
-        <input id={id} type="checkbox" className="invisible" />
+        <input name={name} id={id} type={type} className="invisible" />
           <div className="checkbox">
             <svg viewBox="0 0 20 20">
               <path

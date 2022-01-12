@@ -1,3 +1,10 @@
+interface IConstructor {
+  duration?: number;
+  interval?: number;
+  delay?: number;
+  staggerChildren?: number;
+}
+
 export default class LeftRightVariants {
   wrapperVariant = { hidden: {}, visible: {transition: { staggerChildren: 0.7, }} }
   textVariantLeft = {
@@ -9,6 +16,7 @@ export default class LeftRightVariants {
       x: 0,
       opacity: 1,
       transition: {
+        delay: 0,
         duration: 0.7
       }
     },
@@ -45,6 +53,7 @@ export default class LeftRightVariants {
       x: 0,
       opacity: 1,
       transition: {
+        delay: 0,
         duration: 0.7,
       }
     },
@@ -58,6 +67,7 @@ export default class LeftRightVariants {
       opacity: 1,
       scale: 1,
       transition: {
+        delay: 0,
         duration: 0.7,
       }
     },
@@ -73,6 +83,7 @@ export default class LeftRightVariants {
       scale: 1,
       y: 0,
       transition: {
+        delay: 0,
         duration: 0.7,
         when: "beforeChildren",
         staggerChildren: 0.2
@@ -88,6 +99,7 @@ export default class LeftRightVariants {
       opacity: 1,
       scale: 1,
       transition: {
+        delay: 0,
         duration: 0.7,
       }
     },
@@ -106,20 +118,23 @@ export default class LeftRightVariants {
     }
   }
 
-  constructor(duration: number, interval: number) {
-    this.wrapperVariant.visible.transition.staggerChildren = duration;
+  constructor(options: IConstructor) {
+    this.wrapperVariant.visible.transition.staggerChildren =
+    this.textVariantLeft.visible.transition.duration =
+    this.textVariantRight.visible.transition.duration =
+    this.photoVariant.visible.transition.duration =
+    this.fadeInBottom.visible.transition.duration =
+    this.fadeIn.visible.transition.duration =
+    this.mainVariantChildren.visible.transition.duration =
+      options?.duration || .7;
 
-    this.textVariantLeft.visible.transition.duration = duration;
 
-    this.textVariantRight.visible.transition.duration = duration;
-
-    this.photoVariant.visible.transition.duration = duration;
-
-    this.fadeInBottom.visible.transition.duration = duration;
-
-    this.fadeIn.visible.transition.duration = duration;
-
-    this.mainVariantChildren.visible.transition.duration = duration;
+    this.textVariantLeft.visible.transition.delay =
+    this.textVariantRight.visible.transition.delay =
+    this.photoVariant.visible.transition.delay =
+    this.fadeInBottom.visible.transition.delay =
+    this.fadeIn.visible.transition.delay
+      = options?.delay || 0;
 
   }
 }

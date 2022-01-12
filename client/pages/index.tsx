@@ -10,13 +10,17 @@ import AboutSection from "../components/sections/AboutSection";
 import TeachersSection from "../components/sections/TeachersSection";
 import Footer from "../components/sections/Footer";
 import MainSection from "../components/sections/MainSection";
+import VideoMp from "../components/videoplayer/videoMP";
 
 export default function Home() {
   const [authVisible, setAuthVisible] = useState(false);
+  const [videoVisible, setVideoVisible] = useState(false);
   const [whatTap, setWhatTap] = useState<string>("SingIn");
+  const [whatVideo, setWhatVideo] = useState<string>("mainSection");
 
   return (
     <MainHeader setWhatTab={setWhatTap} setAuthVisible={setAuthVisible}>
+
       <CSSTransition
         in={authVisible}
         classNames="fadeIn"
@@ -26,7 +30,16 @@ export default function Home() {
         <Auth setAuthVisible={setAuthVisible} whatTab={whatTap} />
       </CSSTransition>
 
-      <MainSection setWhatTab={setWhatTap} setAuthVisible={setAuthVisible} />
+      <VideoMp
+        setVideoVisible={setVideoVisible}
+        isOpen={videoVisible}
+      />
+
+      <MainSection
+        setVideoVisible={setVideoVisible}
+        setWhatTab={setWhatTap}
+        setAuthVisible={setAuthVisible}
+      />
 
       <TakeTestSection />
 
@@ -34,7 +47,9 @@ export default function Home() {
 
       <AboutSection />
 
-      <TeachersSection />
+      <TeachersSection
+        setVideoVisible={setVideoVisible}
+      />
 
       <SubscriptionSection />
 

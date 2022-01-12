@@ -8,7 +8,7 @@ export default function AndNumbersSection() {
     threshold: 0.6,
     triggerOnce: true,
   });
-  const variants = new LeftRightVariants(0.7, 0.7);
+  const variants = new LeftRightVariants({})
   const wrapperVariant = variants.wrapperVariant;
   const fadeInBottom = variants.fadeInBottom;
   

@@ -6,21 +6,25 @@ import React, {Dispatch, useRef, useState} from "react";
 import Circle from "../UI/Circle";
 import Legs from "../svg/Legs";
 import Triangle from "../UI/Triangle";
+import {useInView} from "react-intersection-observer";
 
 interface IMainSection {
   setAuthVisible: Dispatch<React.SetStateAction<boolean>>;
+  setVideoVisible: Dispatch<React.SetStateAction<boolean>>;
   setWhatTab: Dispatch<React.SetStateAction<string>>;
 }
 
-const MainSection = ({setAuthVisible, setWhatTab}: IMainSection) => {
-  const variants = new LeftRightVariants(0.7, 0.7);
+const MainSection = ({setAuthVisible, setWhatTab, setVideoVisible}: IMainSection) => {
+  const variants = new LeftRightVariants({});
   const wrapperVariant = variants.wrapperVariant;
   const photoVariant = variants.photoVariant;
   const mainVariantWrapper = variants.mainVariantWrapper;
   const mainVariantChildren = variants.mainVariantChildren;
 
-  const [top, setTop] = useState<number>(0);
-  const ref = useRef<HTMLButtonElement>(null);
+  const { ref, inView } = useInView({
+    threshold: 0.6,
+    triggerOnce: true,
+  });
 
   const openAuthHandler = (what: string) => {
     setWhatTab(what);
@@ -41,6 +45,7 @@ const MainSection = ({setAuthVisible, setWhatTab}: IMainSection) => {
         <motion.div
           className="contentWrapper"
           variants={mainVariantWrapper}
+          ref={ref}
         >
           <motion.span
             variants={mainVariantChildren}
@@ -73,8 +78,11 @@ const MainSection = ({setAuthVisible, setWhatTab}: IMainSection) => {
               Try for free
             </button>
 
-            <div className="videoButtonWrapper">
-              <button ref={ref} className="videoButton">
+            <div
+              className="videoButtonWrapper"
+              onClick={() => setVideoVisible(true)}
+            >
+              <button className="videoButton">
                 <Triangle />
               </button>
               <span>
